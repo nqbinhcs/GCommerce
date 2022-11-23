@@ -2,7 +2,7 @@
 CSC13009 - Android Development Course - Midterm project
 
 ## Report
- Latex [overleaf](https://www.overleaf.com/7221386135fzrbsjmhypxw)
+[Latex overleaf](https://www.overleaf.com/7221386135fzrbsjmhypxw)
 
 ## Authors
 - 20120014 - Vuong Gia Huy
