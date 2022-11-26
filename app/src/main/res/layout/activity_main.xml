@@ -69,7 +69,7 @@
                     android:drawableStart="@drawable/search_24px"
                     android:drawablePadding="10dp"
                     android:ems="10"
-                    android:hint="Search Anything"
+                    android:hint="Search Anything!"
                     android:inputType="textPersonName"
                     android:paddingStart="16dp"
                     android:textStyle="italic"
@@ -128,9 +128,20 @@
                     app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" >
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="TextView"
+                    android:textSize="20sp"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerView2"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
@@ -257,7 +268,9 @@
             android:src="@drawable/camera_24px"
             app:layout_anchor="@+id/app_bar"
             app:layout_anchorGravity="center"
-            app:tint="#ffffff" />
+            app:tint="#ffffff"
+            app:maxImageSize="30dp"
+            />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
