@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.MainActivity"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_activitymain"
+        android:text="Navigate to detail order"
+        app:backgroundTint="#ddd"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_activitymain2"
+        android:text="Navigate to full package detail"
+        app:backgroundTint="#ddd"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_activitymain3"
+        android:text="Navigate to rating"
+        app:backgroundTint="#ddd"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_activitymain4"
+        android:text="Navigate to login"
+        app:backgroundTint="#ddd"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_activitymain5"
+        android:text="Navigate to rating"
+        app:backgroundTint="#ddd"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_activitymain6"
+        android:text="Navigate to rating"
+        app:backgroundTint="#ddd"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_activitymain7"
+        android:text="Navigate to rating"
+        app:backgroundTint="#ddd"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_activitymain8"
+        android:text="Navigate to rating"
+        app:backgroundTint="#ddd"
+        />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

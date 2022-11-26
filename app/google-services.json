@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "172444798066",
+    "project_id": "online-market-d8999",
+    "storage_bucket": "online-market-d8999.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172444798066:android:46d0755112db5ac64546eb",
+        "android_client_info": {
+          "package_name": "com.example.e_commerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172444798066-978f4rtefoddl81lma5642ck2lt0gib8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.e_commerce",
+            "certificate_hash": "048a5d32264d4120620e7255094e79059c1bb861"
+          }
+        },
+        {
+          "client_id": "172444798066-htff8phde6drglr8qqfu17vusnj5625k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp0jPmUlw1CFrVJoTNETNUrBHAUY3GauM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172444798066-htff8phde6drglr8qqfu17vusnj5625k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172444798066:android:779c4976ecacb2894546eb",
+        "android_client_info": {
+          "package_name": "com.example.online_commerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172444798066-htff8phde6drglr8qqfu17vusnj5625k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp0jPmUlw1CFrVJoTNETNUrBHAUY3GauM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172444798066-htff8phde6drglr8qqfu17vusnj5625k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
