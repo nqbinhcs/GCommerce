@@ -7,19 +7,23 @@ import java.io.Serializable;
 public class FoodDomain implements Serializable {
 
     private String id;
-    private String title, pic, description;
+    private String title, pic, seller, category, description;
     private double fee;
-    private String averageRating;
+    private double averageRating;
+    private int numberInCart;
 
     public FoodDomain(){ }
 
-    public FoodDomain(String id, String name, String pic, String description, Double fee, String averageRating) {
+    public FoodDomain(String id, String name, String pic, String seller, String category, String description, Double fee, Double averageRating, int numberInCart) {
         this.id = id;
         this.title = name;
         this.pic = pic;
+        this.seller = seller;
+        this.category = category;
         this.description = description;
         this.fee = fee;
         this.averageRating = averageRating;
+        this.numberInCart = numberInCart;
     }
 
 
@@ -28,7 +32,6 @@ public class FoodDomain implements Serializable {
         title = in.readString();
         pic = in.readString();
         description = in.readString();
-        averageRating = in.readString();
     }
     public String getId() {
         return id;
@@ -54,6 +57,22 @@ public class FoodDomain implements Serializable {
         this.pic = pic;
     }
 
+    public String getSeller() {
+        return seller;
+    }
+
+    public void setSeller(String seller) {
+        this.seller = seller;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -62,12 +81,11 @@ public class FoodDomain implements Serializable {
         this.description = description;
     }
 
-
-    public String getAverageRating() {
+    public Double getAverageRating() {
         return averageRating;
     }
 
-    public void setAverageRating(String averageRating) {
+    public void setAverageRating(Double averageRating) {
         this.averageRating = averageRating;
     }
 
@@ -77,5 +95,13 @@ public class FoodDomain implements Serializable {
 
     public void setFee(double fee) {
         this.fee = fee;
+    }
+
+    public int getNumberInCart() {
+        return numberInCart;
+    }
+
+    public void setNumberInCart(int numberInCart) {
+        this.numberInCart = numberInCart;
     }
 }

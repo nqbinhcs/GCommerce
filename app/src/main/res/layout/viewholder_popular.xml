@@ -20,7 +20,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_pop"
-        app:srcCompat="@drawable/pop_11" />
+        app:srcCompat="@drawable/pop_1" />
 
     <TextView
         android:id="@+id/title_pop"

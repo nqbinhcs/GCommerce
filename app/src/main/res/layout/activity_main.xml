@@ -8,7 +8,7 @@
     tools:context=".Activity.MainActivity">
 
     <ScrollView
-        android:id="@+id/scrollview"
+        android:id="@+id/homeScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/homeLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -27,7 +28,7 @@
                 android:background="@drawable/background_top">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/greetTxT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="75dp"
@@ -38,23 +39,23 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/usernameTxT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="User"
                     android:textColor="#06161C"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@+id/textView2"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                    app:layout_constraintStart_toStartOf="@+id/greetTxT"
+                    app:layout_constraintTop_toBottomOf="@+id/greetTxT" />
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/avtImg"
                     android:layout_width="47dp"
                     android:layout_height="51dp"
                     android:layout_marginTop="28dp"
                     android:layout_marginEnd="12dp"
-                    app:layout_constraintEnd_toStartOf="@+id/textView3"
+                    app:layout_constraintEnd_toStartOf="@+id/usernameTxT"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/profile" />
 
@@ -75,7 +76,7 @@
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                    app:layout_constraintTop_toBottomOf="@+id/usernameTxT" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout2"
@@ -94,7 +95,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/categoryTxT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -107,16 +108,16 @@
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                    android:id="@+id/categoryRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5"
+                    app:layout_constraintTop_toBottomOf="@+id/categoryTxT"
                     app:layout_constraintVertical_bias="0.0"
                     tools:layout_editor_absoluteX="-16dp" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/bestTxT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -125,30 +126,33 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+                    app:layout_constraintTop_toBottomOf="@+id/categoryRecyclerView" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView2"
+                    android:id="@+id/bestRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" >
-                </androidx.recyclerview.widget.RecyclerView>
+                    app:layout_constraintTop_toBottomOf="@+id/bestTxT"></androidx.recyclerview.widget.RecyclerView>
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/marginhomeTxT"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:layout_marginTop="100dp"
                     android:text="TextView"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/recyclerView2"/>
+                    android:textSize="34sp"
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toBottomOf="@+id/bestRecyclerView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/navbarLayout"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="@id/scrollview"
+        app:layout_constraintBottom_toBottomOf="@id/homeScrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -174,7 +178,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/homeImg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -185,14 +189,14 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/homeBtn"
+                    android:id="@+id/categoryBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/categoryImg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -204,7 +208,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/homeBtn"
+                    android:id="@+id/cameraBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -212,7 +216,7 @@
                     android:visibility="invisible">
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/cameraImg"
                         android:layout_width="54dp"
                         android:layout_height="46dp"
                         android:layout_weight="1"
@@ -221,14 +225,14 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/homeBtn"
+                    android:id="@+id/cartBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/cartImg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -239,14 +243,14 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/homeBtn"
+                    android:id="@+id/profileBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/profileImg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -261,6 +265,7 @@
         </com.google.android.material.bottomappbar.BottomAppBar>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/cameraFloatBtn"
             android:layout_width="wrap_content"
             android:layout_height="81dp"
             android:backgroundTint="#23AA49"
@@ -268,9 +273,8 @@
             android:src="@drawable/camera_24px"
             app:layout_anchor="@+id/app_bar"
             app:layout_anchorGravity="center"
-            app:tint="#ffffff"
             app:maxImageSize="30dp"
-            />
+            app:tint="#ffffff" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

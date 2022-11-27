@@ -1,6 +1,7 @@
 package com.example.e_commerce.Adaptor;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.e_commerce.Activity.ShowDetailActivity;
 import com.example.e_commerce.Domain.FoodDomain;
 import com.example.e_commerce.R;
 
@@ -19,10 +21,10 @@ import java.util.ArrayList;
 
 
 public class PopularAdaptor extends RecyclerView.Adapter<PopularAdaptor.ViewHolder> {
-    ArrayList<FoodDomain> foodDomains;
+    ArrayList<FoodDomain> popularFood;
 
     public PopularAdaptor(ArrayList<FoodDomain> foodDomains) {
-        this.foodDomains = foodDomains;
+        this.popularFood = foodDomains;
     }
 
     @Override
@@ -35,10 +37,10 @@ public class PopularAdaptor extends RecyclerView.Adapter<PopularAdaptor.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.popularTitle.setText(foodDomains.get(position).getTitle());
-        holder.popularFee.setText(String.valueOf(foodDomains.get(position).getFee()));
+        holder.popularTitle.setText(popularFood.get(position).getTitle());
+        holder.popularFee.setText(String.valueOf(popularFood.get(position).getFee()));
 
-        int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(foodDomains.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
+        int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(popularFood.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
         if(drawableResourceId==0) {
             drawableResourceId = holder.itemView.getContext().getResources().getIdentifier("food", "drawable", holder.itemView.getContext().getPackageName());
         }
@@ -46,20 +48,21 @@ public class PopularAdaptor extends RecyclerView.Adapter<PopularAdaptor.ViewHold
                 .load(drawableResourceId)
                 .into(holder.popularPic);
 
-//        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(holder.itemView.getContext(), FoodByCategoryActivity.class);
-//                intent.putExtra("category", categoryDomains.get(position).getName());
-//                intent.putExtra("categoryID", categoryDomains.get(position).getId());
-//                holder.itemView.getContext().startActivity(intent);
-//            }
-//        });
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(), ShowDetailActivity.class);
+                intent.putExtra("object", popularFood.get(position));
+//                intent.putExtra("category", popularFood.get(position).getTitle());
+//                intent.putExtra("categoryID", popularFood.get(position).getId());
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return foodDomains.size();
+        return popularFood.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
