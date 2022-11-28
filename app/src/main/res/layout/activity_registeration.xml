@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/LoginLayout"
     android:background="@drawable/login_background"
-    tools:context=".controller.RegisterationActivity">
+    tools:context=".Activity.RegisterationActivity">
 
     <ImageView
         android:onClick="RegiterationBack"
@@ -40,7 +40,6 @@
 
 
     <EditText
-        android:onClick="Account"
         android:clickable="true"
         android:id="@+id/Account"
         android:layout_width="0dp"
@@ -50,7 +49,7 @@
         android:drawablePadding="22dp"
         android:padding="13dp"
         android:elevation="3dp"
-        android:hint="Account"
+        android:hint="Your email"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +60,6 @@
         android:textColor="@color/black"/>
 
     <EditText
-        android:onClick="Password"
         android:clickable="true"
         android:id="@+id/Password"
         android:layout_width="0dp"
@@ -84,7 +82,6 @@
         android:textColor="@color/black"/>
 
     <EditText
-        android:onClick="ConfirmPassword"
         android:clickable="true"
         android:id="@+id/ConfirmPassword"
         android:layout_width="0dp"
@@ -128,6 +125,22 @@
         />
 
     <TextView
+        android:id="@+id/signUpMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:textSize="16dp"
+        android:textColor="#ff0000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48"
+        app:layout_constraintWidth_percent=".5"
+        android:paddingLeft="40dp"/>
+
+    <TextView
         android:onClick="SignIn"
         android:id="@+id/SignIn"
         android:layout_width="0dp"
@@ -144,6 +157,7 @@
         app:layout_constraintVertical_bias="0.5"
 
         app:layout_constraintWidth_percent=".15" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

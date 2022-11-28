@@ -1,7 +1,6 @@
-package com.example.e_commerce.view;
+package com.example.e_commerce.Adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.e_commerce.R;
-import com.example.e_commerce.model.Product;
+import com.example.e_commerce.Model.Product;
 
 import java.util.List;
 

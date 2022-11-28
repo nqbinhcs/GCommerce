@@ -1,4 +1,4 @@
-package com.example.e_commerce.controller;
+package com.example.e_commerce.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

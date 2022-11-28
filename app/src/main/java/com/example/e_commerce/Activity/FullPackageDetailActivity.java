@@ -1,10 +1,8 @@
-package com.example.e_commerce.controller;
+package com.example.e_commerce.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.e_commerce.R;
-import com.example.e_commerce.model.Product;
-import com.example.e_commerce.view.ProductAdapter;
+import com.example.e_commerce.Model.Product;
+import com.example.e_commerce.Adapter.ProductAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

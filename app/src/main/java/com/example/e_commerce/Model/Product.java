@@ -1,4 +1,4 @@
-package com.example.e_commerce.model;
+package com.example.e_commerce.Model;
 
 public class Product {
     private String img_url;
