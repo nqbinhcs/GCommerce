@@ -1,8 +1,16 @@
 package com.example.e_commerce.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +19,19 @@ import com.example.e_commerce.Adapter.PopularAdapter;
 import com.example.e_commerce.Model.Category;
 import com.example.e_commerce.Model.Food;
 import com.example.e_commerce.R;
+import com.example.e_commerce.R;
+import com.example.e_commerce.Activity.CameraActivity;
+import com.example.e_commerce.Detection.customview.OverlayView;
+import com.example.e_commerce.Detection.env.ImageUtils;
+import com.example.e_commerce.Detection.env.Logger;
+import com.example.e_commerce.Detection.env.Utils;
+import com.example.e_commerce.Detection.tflite.Classifier;
+import com.example.e_commerce.Detection.tflite.YoloV5Classifier;
+import com.example.e_commerce.Detection.tracking.MultiBoxTracker;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.io.IOException;
+import java.util.List;
 
 import java.util.ArrayList;
 
@@ -18,6 +39,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private RecyclerView.Adapter categoryAdapter, popularAdapter;
     private RecyclerView recyclerViewCategoryList, recyclerViewPopularList;
+
+    FloatingActionButton cameraButton;
 
 
     @Override
@@ -27,6 +50,52 @@ public class HomeActivity extends AppCompatActivity {
 
         recyclerViewCategory();
         recyclerViewPopular();
+
+        cameraButton = findViewById(R.id.cameraFloatBtn);
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, CameraActivity.class));
+            }
+        });
+
+        bottomNavigation();
+    }
+
+    private void bottomNavigation() {
+        FloatingActionButton floatingActionButton = findViewById(R.id.cameraFloatBtn);
+//        LinearLayout homeButtonn = findViewById(R.id.homeBtn);
+//        LinearLayout profileButtonn = findViewById(R.id.profileBtn);
+//        LinearLayout categoryButton = findViewById(R.id.categoryBtn);
+//        LinearLayout cartButtonn = findViewById(R.id.cartBtn);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, CameraActivity.class));
+            }
+        });
+
+//        profileBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+//            }
+//        });
+//
+//        friendBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(HomeActivity.this,FriendActivity.class));
+//            }
+//        });
+//
+//        settingBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(HomeActivity.this,SettingActivity.class));
+//            }
+//        });
     }
 
     private void recyclerViewCategory(){
