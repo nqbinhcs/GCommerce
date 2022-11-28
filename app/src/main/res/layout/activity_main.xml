@@ -60,7 +60,7 @@
                     app:srcCompat="@drawable/profile" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/searchEditText"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="15dp"
@@ -89,7 +89,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+                    app:layout_constraintTop_toBottomOf="@+id/searchEditText"
                     app:layout_constraintVertical_bias="0.047">
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -148,137 +148,10 @@
         </LinearLayout>
     </ScrollView>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/navbarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="@id/homeScrollView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:backgroundTint="#ffffff"
-            app:fabCradleMargin="8dp"
-            app:fabCradleRoundedCornerRadius="50dp"
-            app:fabCradleVerticalOffset="6dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:id="@+id/homeBtn"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.2"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/homeImg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:scaleX="0.3"
-                        android:scaleY="0.3"
-                        app:srcCompat="@drawable/btn_home" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/categoryBtn"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.2"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/categoryImg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:scaleX="0.3"
-                        android:scaleY="0.3"
-                        app:srcCompat="@drawable/btn_cat" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/cameraBtn"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.2"
-                    android:orientation="vertical"
-                    android:visibility="invisible">
-
-                    <ImageView
-                        android:id="@+id/cameraImg"
-                        android:layout_width="54dp"
-                        android:layout_height="46dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/btn1" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/cartBtn"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.2"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/cartImg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:scaleX="0.3"
-                        android:scaleY="0.3"
-                        app:srcCompat="@drawable/btn_bag" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/profileBtn"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.2"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/profileImg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:scaleX="0.3"
-                        android:scaleY="0.3"
-                        app:srcCompat="@drawable/btn_profile" />
-
-
-                </LinearLayout>
-
-            </LinearLayout>
-        </com.google.android.material.bottomappbar.BottomAppBar>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/cameraFloatBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="81dp"
-            android:backgroundTint="#23AA49"
-            android:elevation="3dp"
-            android:src="@drawable/camera_24px"
-            app:layout_anchor="@+id/app_bar"
-            app:layout_anchorGravity="center"
-            app:maxImageSize="30dp"
-            app:tint="#ffffff" />
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
+    <include
+        android:id="@+id/layoutInclude"
+        layout="@layout/bottom_navigation"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

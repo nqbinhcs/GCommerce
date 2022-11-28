@@ -1,6 +1,7 @@
 package com.example.e_commerce.Adaptor;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.e_commerce.Activity.FoodByCategoryActivity;
 import com.example.e_commerce.Domain.CategoryDomain;
 import com.example.e_commerce.R;
 
@@ -64,15 +65,15 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHo
                 .load(drawableResourceId)
                 .into(holder.categoryPic);
 
-//        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(holder.itemView.getContext(), FoodByCategoryActivity.class);
-//                intent.putExtra("category", categoryDomains.get(position).getName());
-//                intent.putExtra("categoryID", categoryDomains.get(position).getId());
-//                holder.itemView.getContext().startActivity(intent);
-//            }
-//        });
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(), FoodByCategoryActivity.class);
+                intent.putExtra("category", categoryDomains.get(position).getTitle());
+                intent.putExtra("categoryID", categoryDomains.get(position).getId());
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -36,10 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<CategoryDomain> category = new ArrayList<>();
 
-        category.add(new CategoryDomain("Fruits", "cat_11"));
-        category.add(new CategoryDomain("Vegetable", "cat_22"));
-        category.add(new CategoryDomain("Diary", "cat_33"));
-        category.add(new CategoryDomain("Meat", "cat_44"));
+        // -------------------------Query from database-----------------------
+        category.add(new CategoryDomain("001","Fruits", "cat_11"));
+        category.add(new CategoryDomain("002","Vegetable", "cat_22"));
+        category.add(new CategoryDomain("003","Diary", "cat_33"));
+        category.add(new CategoryDomain("004","Meat", "cat_44"));
 
         categoryAdapter = new CategoryAdaptor(category);
         recyclerViewCategoryList.setAdapter(categoryAdapter);
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<FoodDomain> foodList = new ArrayList<>();
 
+        // -------------------------Query from database-----------------------
         foodList.add(new FoodDomain("001", "Bell Peper Red", "red_pepper", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 5.0, 1));
         foodList.add(new FoodDomain("002", "Lamb Meat", "lamb_meat", "Huy", "Meat", "A fresh meat", 45.0, 5.0, 1));
         foodList.add(new FoodDomain("003", "Combo Fresh", "fresh_fish_meat", "Son", "Meat","Meat and Fish", 90.0, 5.0, 1));

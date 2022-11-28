@@ -7,6 +7,19 @@
     android:background="@drawable/background_top"
     tools:context=".Activity.ShowDetailActivity">
 
+    <TextView
+        android:id="@+id/detailheadlineTxT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Product Detail"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:id="@+id/detailScrollView"
         android:layout_width="match_parent"
