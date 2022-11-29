@@ -102,7 +102,8 @@ public class SearchActivity extends AppCompatActivity  {
                             } else {
                                 TextView noMatchView = (TextView) findViewById(R.id.noMatch);
                                 noMatchView.setVisibility(View.VISIBLE);
-                                ScrollView scrollView = (ScrollView) 
+                                ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView6);
+                                scrollView.setVisibility(View.GONE);
                             }
                         } else {
                             Log.w("TAG2", "Error getting documents.", task.getException());

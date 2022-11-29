@@ -1,48 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/LoginLayout"
     android:background="@drawable/login_background"
-    tools:context=".Activity.RegisterationActivity">
+    tools:context=".Activity.RegisterationActivity"
+    android:orientation="vertical"
+    android:padding="15dp">
 
     <ImageView
         android:onClick="RegiterationBack"
         android:id="@+id/back"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/backward"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.03"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/backward" />
 
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Get your groceries\ndelivered to your home"
+        android:text="Get your groceries"
         android:textColor="#06161C"
         android:textSize="28dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.10"
-        app:layout_constraintWidth_percent=".86" />
+        android:layout_marginTop="40dp"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="delivered to your home"
+        android:textColor="#06161C"
+        android:textSize="28dp"
+        android:textStyle="bold"/>
 
     <EditText
         android:clickable="true"
         android:id="@+id/Account"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/eddittext_background"
         android:drawableLeft="@drawable/account"
@@ -50,19 +48,44 @@
         android:padding="13dp"
         android:elevation="3dp"
         android:hint="Your email"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22"
-        app:layout_constraintWidth_percent=".9"
         android:textColorHint="@color/black"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:clickable="true"
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/eddittext_background"
+        android:drawableLeft="@drawable/account"
+        android:drawablePadding="22dp"
+        android:padding="13dp"
+        android:elevation="3dp"
+        android:hint="Your name"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:clickable="true"
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/eddittext_background"
+        android:drawableLeft="@drawable/ic_baseline_location_on_20"
+        android:drawablePadding="20dp"
+        android:padding="13dp"
+        android:elevation="3dp"
+        android:text="Your location"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        android:layout_marginTop="15dp"/>
 
     <EditText
         android:clickable="true"
         android:id="@+id/Password"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/eddittext_background"
         android:drawableLeft="@drawable/password"
@@ -72,19 +95,14 @@
         android:elevation="3dp"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32"
-        app:layout_constraintWidth_percent=".9"
         android:textColorHint="@color/black"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"/>
 
     <EditText
         android:clickable="true"
         android:id="@+id/ConfirmPassword"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/eddittext_background"
         android:drawableLeft="@drawable/password"
@@ -94,20 +112,39 @@
         android:padding="13dp"
         android:hint="Confirm Password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42"
-        app:layout_constraintWidth_percent=".9"
         android:textColorHint="@color/black"
         android:textColor="@color/black"
+        android:layout_marginTop="15dp"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+    <TextView
+        android:id="@+id/SignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Sign in"
+        android:textColor="#F37A20"
+        android:textSize="16dp"
+        android:layout_marginLeft="15dp"/>
+    <TextView
+        android:id="@+id/signUpMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="left"
+        android:textSize="16dp"
+        android:textColor="#ff0000"
+        android:paddingLeft="40dp"/>
+    </LinearLayout>
 
 
     <Button
         android:id="@+id/SignUp"
-        android:layout_width="0dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:text="Sign up"
         android:textAlignment="center"
@@ -116,48 +153,9 @@
         android:textStyle="bold"
         app:backgroundTint="@null"
         android:background="@drawable/button_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.56"
-        app:layout_constraintWidth_percent=".5"
+        android:layout_gravity="center"
         />
 
-    <TextView
-        android:id="@+id/signUpMessage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:textSize="16dp"
-        android:textColor="#ff0000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.48"
-        app:layout_constraintWidth_percent=".5"
-        android:paddingLeft="40dp"/>
-
-    <TextView
-        android:onClick="SignIn"
-        android:id="@+id/SignIn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Sign in"
-        android:textColor="#F37A20"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-
-        app:layout_constraintWidth_percent=".15" />
 
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

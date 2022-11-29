@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="75dp"
                     android:layout_marginTop="28dp"
-                    android:text="Good Morning"
+                    android:text="Welcome to E-Commerce"
                     android:textColor="#06161C"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

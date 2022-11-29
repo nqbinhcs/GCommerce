@@ -20,8 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.e_commerce.Adapter.CategoryAdapter;
 import com.example.e_commerce.Adapter.PopularAdapter;
+import com.example.e_commerce.Manager.LocalCache;
 import com.example.e_commerce.Model.Category;
 import com.example.e_commerce.Model.Food;
+import com.example.e_commerce.Model.User;
 import com.example.e_commerce.R;
 import com.example.e_commerce.R;
 import com.example.e_commerce.Activity.CameraActivity;
@@ -40,24 +42,51 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
+    private LocalCache localCache;
+    private User user;
 
     private RecyclerView.Adapter categoryAdapter, popularAdapter;
     private RecyclerView recyclerViewCategoryList, recyclerViewPopularList;
-    EditText searchView;
+    private EditText searchView;
 
-    FloatingActionButton cameraButton;
-
+    private FloatingActionButton cameraButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        initView();
+        loadUserName();
         recyclerViewCategory();
         recyclerViewPopular();
+        addSearchEvent();
+        addCameraEvent();
+        bottomNavigation();
+    }
 
+    private void initView() {
+        cameraButton = findViewById(R.id.cameraFloatBtn);
         searchView = findViewById(R.id.searchEditText);
+        localCache = new LocalCache(HomeActivity.this, "Local cache");
+    }
 
+    private void loadUserName() {
+        user = localCache.loadUser();
+        TextView userNameView = (TextView) findViewById(R.id.usernameTxT);
+        userNameView.setText(user.getName());
+    }
+
+    private void addCameraEvent() {
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, CameraActivity.class));
+            }
+        });
+    }
+
+    private void addSearchEvent() {
         searchView.setOnTouchListener(new View.OnTouchListener() {
             final int DRAWABLE_RIGHT = 2;
             @Override
@@ -75,16 +104,6 @@ public class HomeActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-        cameraButton = findViewById(R.id.cameraFloatBtn);
-        cameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, CameraActivity.class));
-            }
-        });
-
-        bottomNavigation();
     }
 
     private void bottomNavigation() {

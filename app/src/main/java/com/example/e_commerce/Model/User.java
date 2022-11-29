@@ -18,7 +18,29 @@ public class User {
     private String name;
     private LatLng address;
     private String shop_name;
-    private boolean valid;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public LatLng getAddress() {
+        return address;
+    }
+
+    public String getShop_name() {
+        return shop_name;
+    }
+
+    public User(String email, String name, LatLng address, String shop_name) {
+        this.email = email;
+        this.name = name;
+        this.address = address;
+        this.shop_name = shop_name;
+    }
 
     public User(String email) {
         this.email = email;
@@ -44,6 +66,7 @@ public class User {
                 });
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "User{" +
@@ -51,7 +74,6 @@ public class User {
                 ", name='" + name + '\'' +
                 ", address=" + address +
                 ", shop_name='" + shop_name + '\'' +
-                ", valid=" + valid +
                 '}';
     }
 }

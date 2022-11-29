@@ -2,11 +2,18 @@ package com.example.e_commerce.Activity;
 
 import com.example.e_commerce.R;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,9 +34,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
+import org.w3c.dom.Text;
 
-    private static final String TAG = MapsActivity.class.getSimpleName();
+public class LocationQueryActivity extends AppCompatActivity implements OnMapReadyCallback {
+
+    private static final String TAG = LocationQueryActivity.class.getSimpleName();
     private GoogleMap map;
     private CameraPosition cameraPosition;
 
@@ -43,25 +52,45 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private boolean locationPermissionGranted;
 
     private Location lastKnownLocation;
+    private Location newLocation;
 
     private static final String KEY_CAMERA_POSITION = "camera_position";
     private static final String KEY_LOCATION = "location";
+
+    private ImageView markerView;
+    private TextView setLocationBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        initView();
+//        newLocation = new Location(LocationManager.GPS_PROVIDER);
         if (savedInstanceState != null) {
             lastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             cameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.activity_location_query);
         Places.initialize(getApplicationContext(), getString(R.string.maps_api_key));
         placesClient = Places.createClient(this);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+
+    private void initView() {
+//        markerView = (ImageView) findViewById(R.id.markerCenter);
+        setLocationBtn = (TextView) findViewById(R.id.selectLocationBtn);
+        setLocationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setResult(Activity.RESULT_OK, new Intent()
+                        .putExtra("latitude", Double.toString(map.getCameraPosition().target.latitude))
+                        .putExtra("longitude", Double.toString(map.getCameraPosition().target.longitude)));
+                finish();
+            }
+        });
     }
 
     @Override
@@ -76,7 +105,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap map) {
         this.map = map;
+        if (lastKnownLocation != null) {
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                    new LatLng(lastKnownLocation.getLatitude(),
+                            lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+        }
         getLocationPermission();
+        if (locationPermissionGranted)
+            updateLocationUI();
         getDeviceLocation();
     }
 
@@ -89,6 +125,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     public void onComplete(@NonNull Task<Location> task) {
                         if (task.isSuccessful()) {
                             lastKnownLocation = task.getResult();
+//                            newLocation = lastKnownLocation;
                             if (lastKnownLocation != null) {
                                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                         new LatLng(lastKnownLocation.getLatitude(),
@@ -110,7 +147,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void getLocationPermission() {
-        Log.d("Map act hello", Integer.toString(ContextCompat.checkSelfPermission(this.getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)));
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {

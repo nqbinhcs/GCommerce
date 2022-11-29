@@ -36,7 +36,7 @@
             android:name=".Activity.CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.MapsActivity"
+            android:name=".Activity.LocationQueryActivity"
             android:exported="false" />
 
         <meta-data
