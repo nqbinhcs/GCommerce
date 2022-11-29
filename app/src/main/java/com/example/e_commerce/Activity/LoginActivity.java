@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -15,10 +16,15 @@ import android.widget.TextView;
 import com.example.e_commerce.Manager.LocalCache;
 import com.example.e_commerce.Model.User;
 import com.example.e_commerce.R;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -52,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_UP) {
-                    if(event.getRawX() >= (passwordView.getRight() - passwordView.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    if(event.getRawX() >= (passwordView.getRight() - passwordView.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width()) - passwordView.getPaddingRight()) {
                         if (!visibility)
                         {
                             visibility = true;
@@ -73,20 +79,45 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void Login(View view) {
+        TextView message = (TextView) findViewById(R.id.loginMessage);
+        if (emailView.getText() == null || passwordView.getText() == null ||
+            emailView.getText().toString().length() == 0 ||
+            passwordView.getText().toString().length() == 0) {
+                message.setText("Email or password cannot be empty!");
+                message.setTextColor(Color.RED);
+                return;
+        }
         String email = emailView.getText().toString();
         String password = passwordView.getText().toString();
-        TextView message = (TextView) findViewById(R.id.loginMessage);
+        User user = new User();
         FirebaseAuth.getInstance()
                 .signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(email);
-                            LocalCache localCache = new LocalCache(LoginActivity.this, "Local cache");
-                            localCache.addUser(user);
-                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                            startActivity(intent);
+                            FirebaseFirestore.getInstance()
+                                    .collection("User")
+                                    .whereEqualTo("email", email)
+                                    .limit(1)
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                                    user.setEmail(email);
+                                                    user.setName(document.getString("name"));
+                                                }
+                                                LocalCache localCache = new LocalCache(LoginActivity.this, "Local cache");
+                                                localCache.addUser(user);
+                                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                                startActivity(intent);
+                                            } else {
+                                                Log.d("Firebase query", "Error getting documents: ", task.getException());
+                                            }
+                                        }
+                                    });
                         } else {
                             message.setText("Email or password is invalid!");
                             message.setTextColor(Color.RED);

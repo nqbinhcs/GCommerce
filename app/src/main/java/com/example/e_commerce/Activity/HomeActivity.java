@@ -109,7 +109,7 @@ public class HomeActivity extends AppCompatActivity {
     private void bottomNavigation() {
         FloatingActionButton floatingActionButton = findViewById(R.id.cameraFloatBtn);
 //        LinearLayout homeButtonn = findViewById(R.id.homeBtn);
-//        LinearLayout profileButtonn = findViewById(R.id.profileBtn);
+        LinearLayout profileButtonn = findViewById(R.id.profileBtn);
 //        LinearLayout categoryButton = findViewById(R.id.categoryBtn);
 //        LinearLayout cartButtonn = findViewById(R.id.cartBtn);
 
@@ -120,12 +120,12 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-//        profileBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
-//            }
-//        });
+        profileButtonn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, SettingActivity.class));
+            }
+        });
 //
 //        friendBtn.setOnClickListener(new View.OnClickListener() {
 //            @Override

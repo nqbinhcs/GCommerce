@@ -97,16 +97,19 @@
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/drawable/ic_baseline_add_photo_alternate_24.xml" value="0.1895" />
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/drawable/minus_btn.xml" value="0.1895" />
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_add_product.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_edit_profile.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_food_by_category.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_forget_password.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_full_package_detail.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_home.xml" value="0.264" />
+        <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_location_query.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_login.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_maps.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_maps_login.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_registeration.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_search.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_setting.xml" value="0.264" />
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_show_detail.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/bottom_navigation.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/order_product_item.xml" value="0.27447916666666666" />

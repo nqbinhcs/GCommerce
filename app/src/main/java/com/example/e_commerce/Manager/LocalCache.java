@@ -17,7 +17,7 @@ public class LocalCache {
         SharedPreferences.Editor preferencesEditor = preferences.edit();
         Gson gson = new Gson();
         preferencesEditor.putString("User", gson.toJson(user));
-        preferencesEditor.commit();
+        preferencesEditor.apply();
     }
 
     public User loadUser() {
@@ -26,5 +26,11 @@ public class LocalCache {
             return gson.fromJson(preferences.getString("User", ""), User.class);
         }
         return null;
+    }
+
+    public void deleteUser() {
+        SharedPreferences.Editor preferencesEditor = preferences.edit();
+        preferencesEditor.remove("User");
+        preferencesEditor.apply();
     }
 }

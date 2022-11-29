@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.EditProfileActivity"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp"
+        >
+
+        <ImageView
+            android:onClick="BackEvent"
+            android:id="@+id/back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/baseline_arrow_back"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/catNameTxT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit profile"
+            android:textSize="25sp"
+            android:layout_marginStart="20dp"
+            android:textStyle="bold"
+            android:textColor="#37474F">
+        </TextView>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/avtImg"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toStartOf="@+id/usernameTxT"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/profile"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/edit_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:drawablePadding="5dp"
+        android:padding="13dp"
+        android:elevation="3dp"
+        android:hint="Your email"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:textSize="17dp"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:clickable="true"
+        android:id="@+id/edit_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/eddittext_background"
+        android:drawableLeft="@drawable/account"
+        android:drawablePadding="22dp"
+        android:padding="13dp"
+        android:elevation="3dp"
+        android:hint="Your name"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:clickable="true"
+        android:id="@+id/edit_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/eddittext_background"
+        android:drawableLeft="@drawable/ic_baseline_location_on_20"
+        android:drawablePadding="20dp"
+        android:padding="13dp"
+        android:elevation="3dp"
+        android:text="Your location"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:clickable="true"
+        android:id="@+id/edit_shopname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/eddittext_background"
+        android:drawableLeft="@drawable/ic_baseline_shopping_cart_24"
+        android:drawablePadding="20dp"
+        android:padding="13dp"
+        android:elevation="3dp"
+        android:hint="Your shop name"
+        android:textColor="@color/black"
+        android:textColorHint="#b5b5b5"
+        android:textSize="17dp"
+        android:layout_marginTop="15dp"/>
+
+<!--    <EditText-->
+<!--        android:clickable="true"-->
+<!--        android:id="@+id/Password"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/eddittext_background"-->
+<!--        android:drawableLeft="@drawable/password"-->
+<!--        android:drawableRight="@drawable/visibility"-->
+<!--        android:drawablePadding="22dp"-->
+<!--        android:padding="13dp"-->
+<!--        android:elevation="3dp"-->
+<!--        android:hint="New Password"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:textColorHint="@color/black"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:layout_marginTop="15dp"/>-->
+
+<!--    <EditText-->
+<!--        android:clickable="true"-->
+<!--        android:id="@+id/ConfirmPassword"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/eddittext_background"-->
+<!--        android:drawableLeft="@drawable/password"-->
+<!--        android:drawableRight="@drawable/visibility"-->
+<!--        android:drawablePadding="22dp"-->
+<!--        android:elevation="3dp"-->
+<!--        android:padding="13dp"-->
+<!--        android:hint="Confirm New Password"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:textColorHint="@color/black"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        />-->
+
+    <Button
+        android:id="@+id/saveChanges"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="Save changes"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        android:background="@drawable/button_background"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        />
+
+</LinearLayout>

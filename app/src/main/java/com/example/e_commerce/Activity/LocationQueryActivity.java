@@ -58,7 +58,7 @@ public class LocationQueryActivity extends AppCompatActivity implements OnMapRea
     private static final String KEY_LOCATION = "location";
 
     private ImageView markerView;
-    private TextView setLocationBtn;
+    private Button setLocationBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,17 +80,14 @@ public class LocationQueryActivity extends AppCompatActivity implements OnMapRea
     }
 
     private void initView() {
-//        markerView = (ImageView) findViewById(R.id.markerCenter);
-        setLocationBtn = (TextView) findViewById(R.id.selectLocationBtn);
-        setLocationBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setResult(Activity.RESULT_OK, new Intent()
-                        .putExtra("latitude", Double.toString(map.getCameraPosition().target.latitude))
-                        .putExtra("longitude", Double.toString(map.getCameraPosition().target.longitude)));
-                finish();
-            }
-        });
+    }
+
+    public void setLocation(View v) {
+        setResult(Activity.RESULT_OK, new Intent()
+                .putExtra("latitude", Double.toString(map.getCameraPosition().target.latitude))
+                .putExtra("longitude", Double.toString(map.getCameraPosition().target.longitude)));
+        finish();
+//        startActivity(new Intent(LocationQueryActivity.this, MainActivity.class));
     }
 
     @Override

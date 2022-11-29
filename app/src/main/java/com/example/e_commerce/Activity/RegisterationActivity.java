@@ -28,10 +28,8 @@ import org.w3c.dom.Text;
 
 public class RegisterationActivity extends AppCompatActivity {
 
-    static final int REQUEST_GET_MAP_LOCATION = 0;
-
     Button signUp;
-    TextView signIn, signUpMessageView, locationView;
+    TextView signIn, signUpMessageView;
     EditText account, password, confirmPassword, nameView;
     boolean visibility = false;
 
@@ -48,16 +46,6 @@ public class RegisterationActivity extends AppCompatActivity {
         account = findViewById(R.id.Account);
         signUpMessageView = (TextView) findViewById(R.id.signUpMessage);
         nameView = (EditText) findViewById(R.id.name);
-        locationView = (TextView) findViewById(R.id.location);
-
-        locationView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(RegisterationActivity.this, LocationQueryActivity.class);
-//                startActivityForResult(intent, REQUEST_GET_MAP_LOCATION);
-                startActivity(intent);
-            }
-        });
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,18 +112,6 @@ public class RegisterationActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_GET_MAP_LOCATION && resultCode == Activity.RESULT_OK) {
-            double latitude = Double.parseDouble(data.getStringExtra("latitude"));
-            double longitude = Double.parseDouble(data.getStringExtra("longitude"));
-            // do something with B's return values
-            Log.d("RegisAct", Double.toString(latitude));
-            Log.d("RegisAct", Double.toString(longitude));
-            locationView.setText('[' + Double.toString(latitude) + ',' + Double.toString(longitude) + ']');
-        }
-    }
 
     private void createUser() {
         String email = account.getText().toString();

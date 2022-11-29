@@ -25,18 +25,18 @@
         map:layout_constraintTop_toTopOf="parent"
         android:layout_marginBottom="24dp"/>
 
-    <TextView
+    <Button
         android:id="@+id/selectLocationBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
-        android:padding="10dp"
         android:text="Set this location"
         android:textColor="@color/white"
-        android:textSize="16dp"
+        android:textSize="13dp"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginBottom="15dp"
+        android:onClick="setLocation"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

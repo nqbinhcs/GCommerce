@@ -31,39 +31,35 @@ public class User {
         return address;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(LatLng address) {
+        this.address = address;
+    }
+
+    public void setShop_name(String shop_name) {
+        this.shop_name = shop_name;
+    }
+
     public String getShop_name() {
         return shop_name;
     }
 
-    public User(String email, String name, LatLng address, String shop_name) {
-        this.email = email;
-        this.name = name;
-        this.address = address;
-        this.shop_name = shop_name;
+    public User() {
+
     }
 
-    public User(String email) {
+    public User(String email, String name, double latitude, double longitude, String shop_name) {
         this.email = email;
-        FirebaseFirestore.getInstance()
-                .collection("User")
-                .whereEqualTo("email", this.email)
-                .limit(1)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                name = document.getString("name");
-                                GeoPoint geoPoint = document.getGeoPoint("address");
-                                address = new LatLng(geoPoint.getLatitude(), geoPoint.getLongitude());
-                                shop_name = document.getString("shop_name");
-                            }
-                        } else {
-                            Log.d("Firebase query", "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
+        this.name = name;
+        this.address = new LatLng(latitude, longitude);
+        this.shop_name = shop_name;
     }
 
     @NonNull
