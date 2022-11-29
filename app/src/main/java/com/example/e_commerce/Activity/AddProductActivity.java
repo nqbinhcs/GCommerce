@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -75,10 +76,18 @@ public class AddProductActivity extends AppCompatActivity {
         if (imageUri == null)
             return;
 
-        if (user.getShop_name().length() == 0) {
-            Toast.makeText(AddProductActivity.this,"You should create your shop in your profile first!",Toast.LENGTH_LONG).show();
-            return;
+        if (binding.productCategory.getText().toString().equals("") ||
+            binding.productName.getText().toString().equals("") ||
+            binding.productDescription.getText().toString().equals("") ||
+            binding.productCost.getText().toString().equals("")) {
+                Toast.makeText(AddProductActivity.this, "Please fill all field to add product to your shop!",Toast.LENGTH_LONG).show();
+                return;
         }
+
+//        if (user.getShop_name() == null || user.getShop_name().length() == 0) {
+//            Toast.makeText(AddProductActivity.this,"You should create your shop in your profile first!",Toast.LENGTH_LONG).show();
+//            return;
+//        }
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Uploading File....");
@@ -87,7 +96,7 @@ public class AddProductActivity extends AppCompatActivity {
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CANADA);
         Date now = new Date();
-        String fileName = formatter.format(now);
+        String fileName = formatter.format(now) + "_" + user.getEmail();
         storageReference = FirebaseStorage.getInstance().getReference("images/"+fileName);
 
 
@@ -101,34 +110,44 @@ public class AddProductActivity extends AppCompatActivity {
                         binding.selectImageBtn.setVisibility(View.VISIBLE);
                         binding.textimage.setVisibility(View.VISIBLE);
 
+                        if (progressDialog.isShowing())
+                            progressDialog.dismiss();
+                        Toast.makeText(AddProductActivity.this,"Successfully Uploaded",Toast.LENGTH_SHORT).show();
+
                         Map<String, String> productFirestore = new HashMap<>();
                         productFirestore.put("category", binding.productCategory.getText().toString());
                         productFirestore.put("name", binding.productName.getText().toString());
                         productFirestore.put("description", binding.productDescription.getText().toString());
-                        productFirestore.put("imgUrl", taskSnapshot.getStorage().getDownloadUrl().toString());
                         productFirestore.put("cost", binding.productCost.getText().toString());
                         productFirestore.put("seller", user.getName());
                         productFirestore.put("email", user.getEmail());
 
-                        FirebaseFirestore.getInstance()
-                                .collection("Product")
-                                .add(productFirestore)
-                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                    @Override
-                                    public void onSuccess(DocumentReference documentReference) {
-                                        if (progressDialog.isShowing())
-                                            progressDialog.dismiss();
-                                        Toast.makeText(AddProductActivity.this,"Successfully Uploaded",Toast.LENGTH_SHORT).show();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        if (progressDialog.isShowing())
-                                            progressDialog.dismiss();
-                                        Toast.makeText(AddProductActivity.this,"Failed to Upload",Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                productFirestore.put("imgUrl", uri.toString());
+                                FirebaseFirestore.getInstance()
+                                        .collection("Product")
+                                        .add(productFirestore)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                if (progressDialog.isShowing())
+                                                    progressDialog.dismiss();
+                                                Toast.makeText(AddProductActivity.this,"Successfully Uploaded",Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                if (progressDialog.isShowing())
+                                                    progressDialog.dismiss();
+                                                Toast.makeText(AddProductActivity.this,"Failed to Upload",Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
+                        });
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
