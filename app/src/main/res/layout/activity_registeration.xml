@@ -67,21 +67,6 @@
         android:textColor="@color/black"
         android:layout_marginTop="15dp"/>
 
-    <TextView
-        android:clickable="true"
-        android:id="@+id/location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/eddittext_background"
-        android:drawableLeft="@drawable/ic_baseline_location_on_20"
-        android:drawablePadding="20dp"
-        android:padding="13dp"
-        android:elevation="3dp"
-        android:text="Your location"
-        android:textColor="@color/black"
-        android:textSize="17dp"
-        android:layout_marginTop="15dp"/>
-
     <EditText
         android:clickable="true"
         android:id="@+id/Password"
@@ -117,29 +102,27 @@
         android:layout_marginTop="15dp"
         />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp">
-    <TextView
-        android:id="@+id/SignIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Sign in"
-        android:textColor="#F37A20"
-        android:textSize="16dp"
-        android:layout_marginLeft="15dp"/>
     <TextView
         android:id="@+id/signUpMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_gravity="left"
         android:textSize="16dp"
         android:textColor="#ff0000"
-        android:paddingLeft="40dp"/>
-    </LinearLayout>
+        android:text=""
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"/>
+
+    <TextView
+        android:id="@+id/SignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="Sign in"
+        android:textColor="#F37A20"
+        android:textSize="16dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"/>
 
 
     <Button
@@ -154,6 +137,7 @@
         app:backgroundTint="@null"
         android:background="@drawable/button_background"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         />
 
 

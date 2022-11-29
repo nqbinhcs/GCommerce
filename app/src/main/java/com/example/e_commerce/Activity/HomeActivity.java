@@ -111,7 +111,7 @@ public class HomeActivity extends AppCompatActivity {
 //        LinearLayout homeButtonn = findViewById(R.id.homeBtn);
         LinearLayout profileButtonn = findViewById(R.id.profileBtn);
 //        LinearLayout categoryButton = findViewById(R.id.categoryBtn);
-//        LinearLayout cartButtonn = findViewById(R.id.cartBtn);
+        LinearLayout cartButtonn = findViewById(R.id.cartBtn);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +126,14 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, SettingActivity.class));
             }
         });
+
+        cartButtonn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, AddProductActivity.class));
+            }
+        });
+
 //
 //        friendBtn.setOnClickListener(new View.OnClickListener() {
 //            @Override

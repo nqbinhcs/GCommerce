@@ -20,11 +20,19 @@ import android.widget.Toast;
 
 import com.example.e_commerce.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
 import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterationActivity extends AppCompatActivity {
 
@@ -62,7 +70,7 @@ public class RegisterationActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_UP) {
-                    if(event.getRawX() >= (password.getRight() - password.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    if(event.getRawX() >= (password.getRight() - password.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width() - password.getPaddingRight())) {
                         if (!visibility)
                         {
                             visibility = true;
@@ -91,7 +99,7 @@ public class RegisterationActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 // TODO Auto-generated method stub
                 if(event.getAction() == MotionEvent.ACTION_UP) {
-                    if(event.getRawX() >= (confirmPassword.getRight() - confirmPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    if(event.getRawX() >= (confirmPassword.getRight() - confirmPassword.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width() - confirmPassword.getPaddingRight())) {
                         if (!visibility)
                         {
                             visibility = true;
@@ -164,8 +172,31 @@ public class RegisterationActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            signUpMessageView.setText("Sign up successfully!");
-                            signUpMessageView.setTextColor(Color.GREEN);
+                            // Add user to firestore
+                            Map<String, String> userFirestore = new HashMap<>();
+                            userFirestore.put("email", email);
+                            userFirestore.put("name", name);
+                            userFirestore.put("latitude", "0");
+                            userFirestore.put("longitude", "0");
+                            userFirestore.put("shop_name", "");
+                            FirebaseFirestore.getInstance()
+                                    .collection("User")
+                                    .add(userFirestore)
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        @Override
+                                        public void onSuccess(DocumentReference documentReference) {
+                                            Log.d("SignupActivity", "Add user " + email + " successfully");
+                                            Toast.makeText(RegisterationActivity.this,"Successfully sign up",Toast.LENGTH_SHORT).show();
+                                            signUpMessageView.setText("Sign up successfully!");
+                                            signUpMessageView.setTextColor(Color.GREEN);
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w("SignupActivity", "Error adding user", e);
+                                        }
+                                    });
                         } else {
                             signUpMessageView.setText("Email is already exist!");
                             signUpMessageView.setTextColor(Color.RED);

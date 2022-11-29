@@ -34,6 +34,7 @@
     </LinearLayout>
 
     <EditText
+        android:id="@+id/product_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/forgetpassword_edittext"
@@ -48,6 +49,7 @@
 
 
     <EditText
+        android:id="@+id/product_cost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/forgetpassword_edittext"
@@ -56,6 +58,20 @@
         android:elevation="3dp"
         android:padding="13dp"
         android:hint="Cost"
+        android:textColor="@color/black"
+        android:textColorHint="#B5B5B5"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:id="@+id/product_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/forgetpassword_edittext"
+        android:drawableLeft="@drawable/ic_baseline_category_24"
+        android:drawablePadding="22dp"
+        android:elevation="3dp"
+        android:padding="13dp"
+        android:hint="Category"
         android:textColor="@color/black"
         android:textColorHint="#B5B5B5"
         android:layout_marginTop="15dp"/>
@@ -74,6 +90,7 @@
 <!--        android:layout_marginTop="15dp"/>-->
 
     <EditText
+        android:id="@+id/product_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/forgetpassword_edittext"

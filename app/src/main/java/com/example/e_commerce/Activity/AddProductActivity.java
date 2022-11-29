@@ -12,18 +12,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.e_commerce.Manager.LocalCache;
+import com.example.e_commerce.Model.User;
 import com.example.e_commerce.R;
 import com.example.e_commerce.databinding.ActivityAddProductBinding;
 import com.example.e_commerce.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -31,6 +37,8 @@ public class AddProductActivity extends AppCompatActivity {
     Uri imageUri;
     StorageReference storageReference;
     ProgressDialog progressDialog;
+    LocalCache localCache;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,32 +46,39 @@ public class AddProductActivity extends AppCompatActivity {
         binding = ActivityAddProductBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        initView();
+        addOnClickEvent();
+    }
+
+    private void initView() {
+        localCache = new LocalCache(AddProductActivity.this, "Local cache");
+        user = localCache.loadUser();
+    }
+
+    private void addOnClickEvent() {
         binding.layoutUploadimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 selectImage();
-
-
             }
         });
 
         binding.addProductBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 uploadImage();
-
             }
         });
-
     }
 
     private void uploadImage() {
         if (imageUri == null)
             return;
+
+        if (user.getShop_name().length() == 0) {
+            Toast.makeText(AddProductActivity.this,"You should create your shop in your profile first!",Toast.LENGTH_LONG).show();
+            return;
+        }
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Uploading File....");
@@ -85,21 +100,42 @@ public class AddProductActivity extends AppCompatActivity {
                         binding.imageUpload.setVisibility(View.GONE);
                         binding.selectImageBtn.setVisibility(View.VISIBLE);
                         binding.textimage.setVisibility(View.VISIBLE);
-                        Toast.makeText(AddProductActivity.this,"Successfully Uploaded",Toast.LENGTH_SHORT).show();
-                        if (progressDialog.isShowing())
-                            progressDialog.dismiss();
 
+                        Map<String, String> productFirestore = new HashMap<>();
+                        productFirestore.put("category", binding.productCategory.getText().toString());
+                        productFirestore.put("name", binding.productName.getText().toString());
+                        productFirestore.put("description", binding.productDescription.getText().toString());
+                        productFirestore.put("imgUrl", taskSnapshot.getStorage().getDownloadUrl().toString());
+                        productFirestore.put("cost", binding.productCost.getText().toString());
+                        productFirestore.put("seller", user.getName());
+                        productFirestore.put("email", user.getEmail());
+
+                        FirebaseFirestore.getInstance()
+                                .collection("Product")
+                                .add(productFirestore)
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        if (progressDialog.isShowing())
+                                            progressDialog.dismiss();
+                                        Toast.makeText(AddProductActivity.this,"Successfully Uploaded",Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        if (progressDialog.isShowing())
+                                            progressDialog.dismiss();
+                                        Toast.makeText(AddProductActivity.this,"Failed to Upload",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
-
                         if (progressDialog.isShowing())
                             progressDialog.dismiss();
                         Toast.makeText(AddProductActivity.this,"Failed to Upload",Toast.LENGTH_SHORT).show();
-
-
                     }
                 });
 

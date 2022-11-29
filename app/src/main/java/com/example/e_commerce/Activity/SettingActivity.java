@@ -25,6 +25,10 @@ public class SettingActivity extends AppCompatActivity {
         addEventOnClick();
     }
 
+    public void BackEvent(View view) {
+        finish();
+    }
+
     private void addEventOnClick() {
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
