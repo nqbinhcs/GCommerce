@@ -1,11 +1,13 @@
 package com.example.e_commerce.Activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,7 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.e_commerce.Adapter.FoodAdapter;
 import com.example.e_commerce.Model.Food;
 import com.example.e_commerce.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -66,41 +73,6 @@ public class FoodByCategoryActivity extends AppCompatActivity  {
         LinearLayout categoryBtn = findViewById(R.id.categoryBtn);
         LinearLayout bagBtn = findViewById(R.id.cartBtn);
         LinearLayout profileBtn = findViewById(R.id.profileBtn);
-
-//        homeBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(FoodByCategoryActivity.this, MainActivity.class));
-//            }
-//        });
-//
-//        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(FoodByCategoryActivity.this,SearchCameraActivity.class));
-//            }
-//        });
-//
-//        profileBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(FoodByCategoryActivity.this, ProfileActivity.class));
-//            }
-//        });
-//
-//        bagBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(FoodByCategoryActivity.this,CartActivity.class));
-//            }
-//        });
-
-//        settingBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(FoodByCategoryActivity.this,SettingActivity.class));
-//            }
-//        });
     }
 
 
@@ -111,9 +83,33 @@ public class FoodByCategoryActivity extends AppCompatActivity  {
 
         foodList = new ArrayList<Food>();
         // -------------------------Query from database-----------------------
-        foodList.add(new Food("001", "Bell Peper Red", "red_pepper", "Binh", "Vegetable", "Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 5.0, 1));
-        adapter = new FoodAdapter(foodList);
-        recyclerView.setAdapter(adapter);
+//        foodList.add(new Food("https://firebasestorage.googleapis.com/v0/b/online-market-d8999.appspot.com/o/images%2F2022_11_28_23_35_01?alt=media&token=593fb45e-37e2-46f4-a842-0634d2344bec", "Bell Peper Red", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 1));
+        FirebaseFirestore.getInstance()
+                .collection("Product")
+                .whereEqualTo("category", catTitle)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("TAG2", document.getId() + " => " + document.getData());
+
+                                foodList.add(new Food(document.getString("imgUrl"),
+                                    document.getString("name"),
+                                    document.getString("seller"),
+                                    document.getString("category"),
+                                    document.getString("description"),
+                                    Double.valueOf(document.getString("cost")), 0));
+                            }
+
+                            adapter = new FoodAdapter(foodList);
+                            recyclerView.setAdapter(adapter);
+                        } else {
+                            Log.w("TAG2", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
 
     }
 

@@ -38,14 +38,10 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.popularTitle.setText(popularFood.get(position).getTitle());
-        holder.popularFee.setText(String.valueOf(popularFood.get(position).getFee()));
+        holder.popularFee.setText(String.valueOf(popularFood.get(position).getCost()));
 
-        int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(popularFood.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
-        if(drawableResourceId==0) {
-            drawableResourceId = holder.itemView.getContext().getResources().getIdentifier("food", "drawable", holder.itemView.getContext().getPackageName());
-        }
         Glide.with(holder.itemView.getContext())
-                .load(drawableResourceId)
+                .load(popularFood.get(position).getImageUrl())
                 .into(holder.popularPic);
 
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {

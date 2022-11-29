@@ -2,6 +2,7 @@ package com.example.e_commerce.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,15 +38,9 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.title.setText(Foods.get(position).getTitle());
         holder.description.setText(Foods.get(position).getDescription());
-        holder.rating.setText(String.valueOf(Foods.get(position).getAverageRating()));
-
-        int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(Foods.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
-        if (drawableResourceId==0){
-            drawableResourceId = holder.itemView.getContext().getResources().getIdentifier("food", "drawable", holder.itemView.getContext().getPackageName());
-        }
 
         Glide.with(holder.itemView.getContext())
-                .load(drawableResourceId)
+                .load(Foods.get(position).getImageUrl())
                 .into(holder.pic);
 
         holder.pic.setOnClickListener(new View.OnClickListener() {
@@ -54,12 +49,38 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
                 Intent intent = new Intent(holder.itemView.getContext(), ShowDetailActivity.class);
 
                 //get Food based on ID from database, but we not setup. So, we use a hard code example
-                Food example = new Food("001", "Bell Peper Red", "red_pepper", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 5.0, 1);
+                Food example = new Food("https://firebasestorage.googleapis.com/v0/b/online-market-d8999.appspot.com/o/images%2F2022_11_28_23_35_01?alt=media&token=593fb45e-37e2-46f4-a842-0634d2344bec",
+                        "Bell Peper Red", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 1);
                 intent.putExtra("object", example);
                 holder.itemView.getContext().startActivity(intent);
             }
         });
 
+        holder.description.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(), ShowDetailActivity.class);
+
+                //get Food based on ID from database, but we not setup. So, we use a hard code example
+                Food example = new Food("https://firebasestorage.googleapis.com/v0/b/online-market-d8999.appspot.com/o/images%2F2022_11_28_23_35_01?alt=media&token=593fb45e-37e2-46f4-a842-0634d2344bec",
+                        "Bell Peper Red", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 1);
+                intent.putExtra("object", example);
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
+
+        holder.title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(), ShowDetailActivity.class);
+
+                //get Food based on ID from database, but we not setup. So, we use a hard code example
+                Food example = new Food("https://firebasestorage.googleapis.com/v0/b/online-market-d8999.appspot.com/o/images%2F2022_11_28_23_35_01?alt=media&token=593fb45e-37e2-46f4-a842-0634d2344bec",
+                        "Bell Peper Red", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 1);
+                intent.putExtra("object", example);
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -80,7 +101,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             pic = itemView.findViewById(R.id.foodImg);
             addBtn = itemView.findViewById(R.id.foodaddBtn);
             description = itemView.findViewById(R.id.fooddescriptionTxT);
-            rating = itemView.findViewById(R.id.foodratingTxT);
+//            rating = itemView.findViewById(R.id.foodratingTxT);
         }
     }
 

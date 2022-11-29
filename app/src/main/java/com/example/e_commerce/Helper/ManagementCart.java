@@ -62,7 +62,7 @@ public class ManagementCart {
         ArrayList<Food> listfood = getListCart();
         double fee = 0;
         for (int i = 0; i < listfood.size(); i++) {
-            fee = fee + (listfood.get(i).getFee() * listfood.get(i).getNumberInCart());
+            fee = fee + (listfood.get(i).getCost() * listfood.get(i).getNumberInCart());
         }
         return fee;
     }

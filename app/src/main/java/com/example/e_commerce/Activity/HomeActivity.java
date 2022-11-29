@@ -106,7 +106,7 @@ public class HomeActivity extends AppCompatActivity {
         ArrayList<Category> category = new ArrayList<>();
 
         // -------------------------Query from database-----------------------
-        category.add(new Category("001","Fruits", "cat_11"));
+        category.add(new Category("001","Fruit", "cat_11"));
         category.add(new Category("002","Vegetable", "cat_22"));
         category.add(new Category("003","Diary", "cat_33"));
         category.add(new Category("004","Meat", "cat_44"));
@@ -124,9 +124,9 @@ public class HomeActivity extends AppCompatActivity {
         ArrayList<Food> foodList = new ArrayList<>();
 
         // -------------------------Query from database-----------------------
-        foodList.add(new Food("001", "Bell Peper Red", "red_pepper", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 5.0, 1));
-        foodList.add(new Food("002", "Lamb Meat", "lamb_meat", "Huy", "Meat", "A fresh meat", 45.0, 5.0, 1));
-        foodList.add(new Food("003", "Combo Fresh", "fresh_fish_meat", "Son", "Meat","Meat and Fish", 90.0, 5.0, 1));
+        foodList.add(new Food("https://firebasestorage.googleapis.com/v0/b/online-market-d8999.appspot.com/o/images%2F2022_11_28_23_35_01?alt=media&token=593fb45e-37e2-46f4-a842-0634d2344bec", "Bell Peper Red", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 1));
+        foodList.add(new Food("https://firebasestorage.googleapis.com/v0/b/online-market-d8999.appspot.com/o/images%2F2022_11_28_23_35_01?alt=media&token=593fb45e-37e2-46f4-a842-0634d2344bec", "Bell Peper Red", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 1));
+        foodList.add(new Food("https://firebasestorage.googleapis.com/v0/b/online-market-d8999.appspot.com/o/images%2F2022_11_28_23_35_01?alt=media&token=593fb45e-37e2-46f4-a842-0634d2344bec", "Bell Peper Red", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 1));
 
         popularAdapter = new PopularAdapter(foodList);
         recyclerViewPopularList.setAdapter(popularAdapter);

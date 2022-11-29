@@ -87,6 +87,7 @@
         android:layout_marginTop="15dp"/>
 
     <LinearLayout
+        android:id="@+id/layout_uploadimage"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -95,18 +96,40 @@
         android:layout_marginBottom="15dp"
         android:gravity="center"
         android:orientation="vertical">
-
+        
         <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@drawable/ic_baseline_add_photo_alternate_24"
+            android:id="@+id/imageUpload"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
             />
+        
+        <ImageView
+            android:id="@+id/selectImageBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_add_photo_alternate_24"/>
 
         <TextView
+            android:id="@+id/textimage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Upload image here"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:textColor="#37474F"/>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/addProductBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@null"
+        android:background="@drawable/custom_button_confirm"
+        android:textColor="#fff"
+        android:text="Add product to your shop"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:visibility="visible"/>
+
 </LinearLayout>

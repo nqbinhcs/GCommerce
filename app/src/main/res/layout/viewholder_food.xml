@@ -31,7 +31,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/foodImg"
         app:layout_constraintTop_toTopOf="@+id/foodImg">
 
@@ -40,22 +40,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:text="title"
             android:textColor="#373b54"
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/foodratingTxT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="5.0"
-            android:textColor="#FF5722"
-            android:textSize="18sp"
-            android:textStyle="italic" />
+<!--        <TextView-->
+<!--            android:id="@+id/distance"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:text="Shop: Son Ho"-->
+<!--            android:textColor="#373b54"-->
+<!--            android:textSize="13sp"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/foodratingTxT"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:text="5.0"-->
+<!--            android:textColor="#FF5722"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="italic" />-->
 
 
     </LinearLayout>

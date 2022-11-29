@@ -89,6 +89,17 @@
         <entry key="..\:/Learning/E-Commerce/app/src/main/res/layout/viewholder_category.xml" value="0.17335526315789473" />
         <entry key="..\:/Learning/E-Commerce/app/src/main/res/layout/viewholder_food.xml" value="0.17335526315789473" />
         <entry key="..\:/Learning/E-Commerce/app/src/main/res/layout/viewholder_popular.xml" value="0.17335526315789473" />
+        <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/drawable/forgetpassword_edittext.xml" value="0.1895" />
+        <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/drawable/ic_baseline_add_photo_alternate_24.xml" value="0.1895" />
+        <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_add_product.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_forget_password.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_full_package_detail.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_home.xml" value="0.264" />
+        <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_login.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/bottom_navigation.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/order_product_item.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/Son/Desktop/E-Commerce/app/src/main/res/layout/viewholder_food.xml" value="0.27447916666666666" />
       </map>
     </option>
   </component>
