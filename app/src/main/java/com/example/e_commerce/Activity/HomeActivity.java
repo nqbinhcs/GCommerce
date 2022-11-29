@@ -5,6 +5,7 @@ import android.media.Rating;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.Layout;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,7 +36,13 @@ import com.example.e_commerce.Detection.env.Utils;
 import com.example.e_commerce.Detection.tflite.Classifier;
 import com.example.e_commerce.Detection.tflite.YoloV5Classifier;
 import com.example.e_commerce.Detection.tracking.MultiBoxTracker;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.IOException;
 import java.util.List;
@@ -110,7 +118,7 @@ public class HomeActivity extends AppCompatActivity {
         FloatingActionButton floatingActionButton = findViewById(R.id.cameraFloatBtn);
 //        LinearLayout homeButtonn = findViewById(R.id.homeBtn);
         LinearLayout profileButtonn = findViewById(R.id.profileBtn);
-//        LinearLayout categoryButton = findViewById(R.id.categoryBtn);
+        LinearLayout categoryButton = findViewById(R.id.categoryBtn);
         LinearLayout cartButtonn = findViewById(R.id.cartBtn);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -127,27 +135,19 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        cartButtonn.setOnClickListener(new View.OnClickListener() {
+        categoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this, AddProductActivity.class));
             }
         });
 
-//
-//        friendBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(HomeActivity.this,FriendActivity.class));
-//            }
-//        });
-//
-//        settingBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(HomeActivity.this,SettingActivity.class));
-//            }
-//        });
+        cartButtonn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, CartActivity.class));
+            }
+        });
     }
 
     private void recyclerViewCategory(){
@@ -176,12 +176,27 @@ public class HomeActivity extends AppCompatActivity {
         ArrayList<Food> foodList = new ArrayList<>();
 
         // -------------------------Query from database-----------------------
-        foodList.add(new Food("https://firebasestorage.googleapis.com/v0/b/online-market-d8999.appspot.com/o/images%2F2022_11_28_23_35_01?alt=media&token=593fb45e-37e2-46f4-a842-0634d2344bec", "Bell Peper Red", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 1));
-        foodList.add(new Food("https://firebasestorage.googleapis.com/v0/b/online-market-d8999.appspot.com/o/images%2F2022_11_28_23_35_01?alt=media&token=593fb45e-37e2-46f4-a842-0634d2344bec", "Bell Peper Red", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 1));
-        foodList.add(new Food("https://firebasestorage.googleapis.com/v0/b/online-market-d8999.appspot.com/o/images%2F2022_11_28_23_35_01?alt=media&token=593fb45e-37e2-46f4-a842-0634d2344bec", "Bell Peper Red", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 1));
+        FirebaseFirestore.getInstance().collection("Product").limit(10).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                foodList.add(new Food(document.getString("imgUrl"),
+                                        document.getString("name"),
+                                        document.getString("seller"),
+                                        document.getString("category"),
+                                        document.getString("description"),
+                                        Double.valueOf(document.getString("cost")), 0));
+                            }
+                            popularAdapter = new PopularAdapter(foodList);
+                            recyclerViewPopularList.setAdapter(popularAdapter);
+                        } else {
+                            Log.w("HomeActivity", "Error loading popular data", task.getException());
+                        }
+                    }
+                });
 
-        popularAdapter = new PopularAdapter(foodList);
-        recyclerViewPopularList.setAdapter(popularAdapter);
 
     }
 }

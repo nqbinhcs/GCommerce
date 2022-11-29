@@ -2,7 +2,6 @@ package com.example.e_commerce.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +18,10 @@ import com.example.e_commerce.R;
 
 import java.util.ArrayList;
 
-public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
+public class FoodCartAdapter extends RecyclerView.Adapter<FoodCartAdapter.ViewHolder> {
     ArrayList<Food> Foods;
 
-    public FoodAdapter(ArrayList<Food> Foods) {
+    public FoodCartAdapter(ArrayList<Food> Foods) {
         this.Foods = Foods;
     }
 
@@ -38,46 +37,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.title.setText(Foods.get(position).getTitle());
         holder.description.setText(Foods.get(position).getDescription());
-
+        holder.shop.setText("Shop: " + Foods.get(position).getSeller());
+        holder.addBtn.setText("Number: " + Integer.toString(Foods.get(position).getNumberInCart()));
         Glide.with(holder.itemView.getContext())
                 .load(Foods.get(position).getImageUrl())
                 .into(holder.pic);
-
-        holder.pic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(), ShowDetailActivity.class);
-                intent.putExtra("object", Foods.get(position));
-                holder.itemView.getContext().startActivity(intent);
-            }
-        });
-
-        holder.description.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(), ShowDetailActivity.class);
-                intent.putExtra("object", Foods.get(position));
-                holder.itemView.getContext().startActivity(intent);
-            }
-        });
-
-        holder.title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(), ShowDetailActivity.class);
-                intent.putExtra("object", Foods.get(position));
-                holder.itemView.getContext().startActivity(intent);
-            }
-        });
-
-        holder.addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(), ShowDetailActivity.class);
-                intent.putExtra("object", Foods.get(position));
-                holder.itemView.getContext().startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -90,7 +54,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         ImageView pic;
         TextView addBtn;
         TextView description;
-        TextView rating;
+        TextView shop;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -98,7 +62,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             pic = itemView.findViewById(R.id.foodImg);
             addBtn = itemView.findViewById(R.id.foodaddBtn);
             description = itemView.findViewById(R.id.fooddescriptionTxT);
-//            rating = itemView.findViewById(R.id.foodratingTxT);
+            shop = itemView.findViewById(R.id.shop);
         }
     }
 

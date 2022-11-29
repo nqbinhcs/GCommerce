@@ -17,7 +17,7 @@
         >
 
         <ImageView
-            android:id="@+id/back_arrow_detail_order"
+            android:onClick="BackEvent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

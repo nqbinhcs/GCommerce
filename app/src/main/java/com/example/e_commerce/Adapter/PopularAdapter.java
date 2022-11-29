@@ -38,7 +38,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.popularTitle.setText(popularFood.get(position).getTitle());
-        holder.popularFee.setText(String.valueOf(popularFood.get(position).getCost()));
+        holder.popularFee.setText("$" + String.valueOf(popularFood.get(position).getCost()));
 
         Glide.with(holder.itemView.getContext())
                 .load(popularFood.get(position).getImageUrl())

@@ -6,9 +6,13 @@ import java.io.Serializable;
 
 public class Food implements Serializable {
 
-    private String title, seller, category, description, imgUrl;
     private double cost;
+    private String category;
+    private String description;
+    private String imgUrl;
     private int numberInCart;
+    private String seller;
+    private String title;
 
     public Food(String imgUrl, String title, String seller, String category, String description, double cost, int numberInCart) {
         this.imgUrl = imgUrl;
@@ -18,6 +22,7 @@ public class Food implements Serializable {
         this.description = description;
         this.cost = cost;
         this.numberInCart = numberInCart;
+        this.numberInCart = 1;
     }
 
     public String getImageUrl() {
@@ -70,5 +75,18 @@ public class Food implements Serializable {
 
     public void setNumberInCart(int numberInCart) {
         this.numberInCart = numberInCart;
+    }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                "title='" + title + '\'' +
+                ", seller='" + seller + '\'' +
+                ", category='" + category + '\'' +
+                ", description='" + description + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", cost=" + cost +
+                ", numberInCart=" + numberInCart +
+                '}';
     }
 }

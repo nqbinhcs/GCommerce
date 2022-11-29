@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Camera;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -41,38 +42,14 @@ import java.util.List;
 
 public class CameraActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
-
-        if(ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED)
-        {
-            ActivityCompat.requestPermissions(CameraActivity.this, new String[]
-                    {
-                            Manifest.permission.CAMERA
-                    }, 100);
-        }
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //startActivityForResult(intent, 100);
-        startActivityForResult(intent, 100);
-
-
-    }
-
     private static final Logger LOGGER = new Logger();
-
     public static final float MINIMUM_CONFIDENCE_TF_OD_API = 0.5f;
-
     public static final int TF_OD_API_INPUT_SIZE = 416;
-
     private static final boolean TF_OD_API_IS_QUANTIZED = false;
-
     private static final String TF_OD_API_MODEL_FILE = "yolov5.tflite";
-
     private static final String TF_OD_API_LABELS_FILE = "file:///android_asset/customclasses.txt";
+
+    private static final int CAMERA_REQUEST = 100;
 
     // Minimum detection confidence to track a detection.
     private static final boolean MAINTAIN_ASPECT = true;
@@ -90,16 +67,29 @@ public class CameraActivity extends AppCompatActivity {
 
     private String searchText;
 
-
-
     private Button cameraButton, detectButton;
     private ImageView imageView;
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
+
+
+        if (ContextCompat.checkSelfPermission(CameraActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(CameraActivity.this, new String[] { Manifest.permission.CAMERA }, CAMERA_REQUEST);
+        } else {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, CAMERA_REQUEST);
+        }
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100)
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK)
         {
+            Log.d("CameraActivity", "success");
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             Bitmap cropBitmap = Utils.processBitmap(bitmap, TF_OD_API_INPUT_SIZE);
 

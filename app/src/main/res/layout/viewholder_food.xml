@@ -1,4 +1,4 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,18 +19,14 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/red_pepper" />
 
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/foodImg"
         app:layout_constraintTop_toTopOf="@+id/foodImg">
@@ -46,14 +42,14 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/distance"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="8dp"-->
-<!--            android:text="Shop: Son Ho"-->
-<!--            android:textColor="#373b54"-->
-<!--            android:textSize="13sp"/>-->
+        <TextView
+            android:id="@+id/shop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Shop: Son Ho"
+            android:textColor="#373b54"
+            android:textSize="13sp"/>
 
 <!--        <TextView-->
 <!--            android:id="@+id/foodratingTxT"-->
@@ -65,9 +61,6 @@
 <!--            android:textColor="#FF5722"-->
 <!--            android:textSize="18sp"-->
 <!--            android:textStyle="italic" />-->
-
-
-    </LinearLayout>
 
     <TextView
         android:id="@+id/fooddescriptionTxT"
@@ -83,6 +76,9 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.0" />
 
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/foodaddBtn"
         android:layout_width="wrap_content"
@@ -97,8 +93,6 @@
         android:text="Add"
         android:textColor="#ffffff"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/foodImg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/foodImg" />
+        android:layout_gravity="center"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

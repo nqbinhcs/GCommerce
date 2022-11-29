@@ -27,6 +27,9 @@
         android:theme="@style/Theme.e_commerce"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.CartActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.EditProfileActivity"
             android:exported="false" />
         <activity

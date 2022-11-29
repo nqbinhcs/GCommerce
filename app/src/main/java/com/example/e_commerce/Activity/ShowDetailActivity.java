@@ -4,12 +4,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.e_commerce.Manager.LocalCache;
 import com.example.e_commerce.Model.Food;
 import com.example.e_commerce.R;
+
+import java.util.ArrayList;
 
 public class ShowDetailActivity extends AppCompatActivity {
     private TextView addToCartBtn;
@@ -17,6 +21,7 @@ public class ShowDetailActivity extends AppCompatActivity {
     private ImageView plusBtn, minusBtn, picFood, backButton;
     private Food object;
     int numberOrder = 1;
+    LocalCache localCache;
 //    private ManagementCart managementCart;
 
     @Override
@@ -59,6 +64,7 @@ public class ShowDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 numberOrder = numberOrder + 1;
+                object.setNumberInCart(numberOrder);
                 numberOrderTxt.setText(String.valueOf(numberOrder));
             }
         });
@@ -69,20 +75,27 @@ public class ShowDetailActivity extends AppCompatActivity {
                 if (numberOrder > 1) {
                     numberOrder = numberOrder - 1;
                 }
+                object.setNumberInCart(numberOrder);
                 numberOrderTxt.setText(String.valueOf(numberOrder));
             }
         });
 
-//        addToCartBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                object.setNumberInCart(numberOrder);
-//                managementCart.insertFood(object);
-//            }
-//        });
+        addToCartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<Food> foodList = localCache.loadFoodList();
+                if (foodList == null)
+                    foodList = new ArrayList<>();
+                foodList.add(object);
+                localCache.deleteFoodList();
+                localCache.addFoodList(foodList);
+                Toast.makeText(ShowDetailActivity.this, "Add " + Integer.toString(numberOrder) + " " + object.getTitle() + " successfully!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initView() {
+        localCache = new LocalCache(this, "Local cache");
         addToCartBtn = findViewById(R.id.addToCartBtn);
         titleTxt = findViewById(R.id.titleTxt);
         feeTxt = findViewById(R.id.priceTxt);

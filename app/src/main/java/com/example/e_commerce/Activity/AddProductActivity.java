@@ -182,4 +182,8 @@ public class AddProductActivity extends AppCompatActivity {
 
         }
     }
+
+    public void BackEvent(View view) {
+        finish();
+    }
 }
