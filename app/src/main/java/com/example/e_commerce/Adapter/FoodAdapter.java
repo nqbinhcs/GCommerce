@@ -47,11 +47,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), ShowDetailActivity.class);
-
-                //get Food based on ID from database, but we not setup. So, we use a hard code example
-                Food example = new Food("https://firebasestorage.googleapis.com/v0/b/online-market-d8999.appspot.com/o/images%2F2022_11_28_23_35_01?alt=media&token=593fb45e-37e2-46f4-a842-0634d2344bec",
-                        "Bell Peper Red", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 1);
-                intent.putExtra("object", example);
+                intent.putExtra("object", Foods.get(position));
                 holder.itemView.getContext().startActivity(intent);
             }
         });
@@ -60,11 +56,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), ShowDetailActivity.class);
-
-                //get Food based on ID from database, but we not setup. So, we use a hard code example
-                Food example = new Food("https://firebasestorage.googleapis.com/v0/b/online-market-d8999.appspot.com/o/images%2F2022_11_28_23_35_01?alt=media&token=593fb45e-37e2-46f4-a842-0634d2344bec",
-                        "Bell Peper Red", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 1);
-                intent.putExtra("object", example);
+                intent.putExtra("object", Foods.get(position));
                 holder.itemView.getContext().startActivity(intent);
             }
         });
@@ -73,11 +65,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), ShowDetailActivity.class);
-
-                //get Food based on ID from database, but we not setup. So, we use a hard code example
-                Food example = new Food("https://firebasestorage.googleapis.com/v0/b/online-market-d8999.appspot.com/o/images%2F2022_11_28_23_35_01?alt=media&token=593fb45e-37e2-46f4-a842-0634d2344bec",
-                        "Bell Peper Red", "Binh", "Vegetable", "Like the tomato, bell peppers are botanical fruits but culinary vegetables. Pieces of bell pepper are commonly used in garden salads and as toppings on pizza", 34.0, 1);
-                intent.putExtra("object", example);
+                intent.putExtra("object", Foods.get(position));
                 holder.itemView.getContext().startActivity(intent);
             }
         });

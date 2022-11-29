@@ -1,10 +1,14 @@
 package com.example.e_commerce.Activity;
 
 import android.content.Intent;
+import android.media.Rating;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.Layout;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private RecyclerView.Adapter categoryAdapter, popularAdapter;
     private RecyclerView recyclerViewCategoryList, recyclerViewPopularList;
+    EditText searchView;
 
     FloatingActionButton cameraButton;
 
@@ -50,6 +55,26 @@ public class HomeActivity extends AppCompatActivity {
 
         recyclerViewCategory();
         recyclerViewPopular();
+
+        searchView = findViewById(R.id.searchEditText);
+
+        searchView.setOnTouchListener(new View.OnTouchListener() {
+            final int DRAWABLE_RIGHT = 2;
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (searchView.getRight() - searchView.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width() - searchView.getPaddingRight())) {
+                        if (searchView.getText().toString().length() > 0) {
+                            Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+                            intent.putExtra("Search text", searchView.getText().toString());
+                            startActivity(intent);
+                        }
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
 
         cameraButton = findViewById(R.id.cameraFloatBtn);
         cameraButton.setOnClickListener(new View.OnClickListener() {

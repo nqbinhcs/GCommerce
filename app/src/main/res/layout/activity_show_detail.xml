@@ -81,7 +81,7 @@
                     android:id="@+id/minusBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/minus" />
+                    app:srcCompat="@android:drawable/btn_minus"/>
 
                 <TextView
                     android:id="@+id/numberOrderTxt"
@@ -99,7 +99,7 @@
                     android:id="@+id/plusBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/plus"/>
+                    app:srcCompat="@android:drawable/ic_input_add"/>
 
             </LinearLayout>
 
