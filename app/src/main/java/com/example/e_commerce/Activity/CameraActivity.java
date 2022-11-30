@@ -65,7 +65,7 @@ public class CameraActivity extends AppCompatActivity {
         getCameraPermission();
         updateUI();
     }
-    
+
     private void captureImage() {
         if (cameraPermissionGranted) {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
