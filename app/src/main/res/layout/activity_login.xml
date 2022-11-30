@@ -5,43 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
+    android:scaleY="1.018"
+    android:scaleX="1.018"
     tools:context=".Activity.LoginActivity"
     android:orientation="vertical"
     android:padding="15dp">
 
-    <TextView
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get your groceries"
-        android:textColor="#06161C"
-        android:textSize="28dp"
-        android:textStyle="bold"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:src="@drawable/small_splash"
+
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="delivered to your home"
+        android:text="Get your groceries\ndelivered to your home"
+        android:gravity="center"
         android:textColor="#06161C"
         android:textSize="28dp"
         android:textStyle="bold"
+        android:layout_marginTop="12dp"
         android:layout_gravity="center"/>
+
 
     <EditText
         android:id="@+id/Account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
         android:background="@drawable/eddittext_background"
         android:drawableStart="@drawable/account"
         android:drawablePadding="22dp"
-        android:padding="13dp"
         android:hint="Your email"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
         android:inputType="text"
-        android:layout_gravity="center"
-        android:layout_marginTop="35dp"/>
+        android:padding="13dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
     <EditText
         android:id="@+id/Password"
@@ -102,20 +106,18 @@
     </LinearLayout>
 
     <Button
-        android:onClick="Login"
         android:id="@+id/Login"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_background"
+        android:onClick="Login"
         android:text="Login"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        app:backgroundTint="@null"
-        android:background="@drawable/button_background"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-    />
-
+        app:backgroundTint="@null" />
 
 
 </LinearLayout>

@@ -8,7 +8,11 @@
     android:background="@drawable/login_background"
     tools:context=".Activity.RegisterationActivity"
     android:orientation="vertical"
+    android:scaleY="1.018"
+    android:scaleX="1.018"
     android:padding="15dp">
+
+
 
     <ImageView
         android:onClick="RegiterationBack"
@@ -17,25 +21,26 @@
         android:layout_height="wrap_content"
         android:src="@drawable/backward" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/small_splash"
+
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Get your groceries"
+        android:text="Get your groceries\ndelivered to your home"
         android:textColor="#06161C"
+        android:layout_gravity="center"
         android:textSize="28dp"
         android:textStyle="bold"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="20dp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="delivered to your home"
-        android:textColor="#06161C"
-        android:textSize="28dp"
-        android:textStyle="bold"/>
+
 
     <EditText
         android:clickable="true"
