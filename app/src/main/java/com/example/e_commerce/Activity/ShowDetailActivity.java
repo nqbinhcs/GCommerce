@@ -1,5 +1,6 @@
 package com.example.e_commerce.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,13 +12,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.e_commerce.Manager.LocalCache;
 import com.example.e_commerce.Model.Food;
+import com.example.e_commerce.Model.User;
 import com.example.e_commerce.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ShowDetailActivity extends AppCompatActivity {
     private TextView addToCartBtn;
-    private TextView titleTxt, feeTxt, sellerTxt, categoryTxT, descriptionTxt, numberOrderTxt;
+    private TextView titleTxt, feeTxt, sellerTxt, shopLocationTxT, categoryTxT, descriptionTxt, numberOrderTxt;
     private ImageView plusBtn, minusBtn, picFood, backButton;
     private Food object;
     int numberOrder = 1;
@@ -80,6 +83,16 @@ public class ShowDetailActivity extends AppCompatActivity {
             }
         });
 
+
+        shopLocationTxT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAddressStore();
+            }
+        });
+
+
+
         addToCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,12 +107,22 @@ public class ShowDetailActivity extends AppCompatActivity {
         });
     }
 
+    private void showAddressStore() {
+        Intent intent = new Intent(ShowDetailActivity.this, MapsActivity.class);
+
+//      --------------------------Query user from database email of product-----------------------------
+        User user = new User("nqbinh@gmail.com", "Binh Nguyen", 10.7510069, 106.6515731, "227 Nguyen Van Cu", "NQB Store");
+        intent.putExtra("user_store", (Serializable) user);
+        startActivity(intent);
+    }
+
     private void initView() {
         localCache = new LocalCache(this, "Local cache");
         addToCartBtn = findViewById(R.id.addToCartBtn);
         titleTxt = findViewById(R.id.titleTxt);
         feeTxt = findViewById(R.id.priceTxt);
         sellerTxt = findViewById(R.id.sellerTxt);
+        shopLocationTxT = findViewById(R.id.shopLocationTxt);
         categoryTxT = findViewById(R.id.categoryTxt);
         descriptionTxt = findViewById(R.id.descriptionTxt);
         numberOrderTxt = findViewById(R.id.numberOrderTxt);

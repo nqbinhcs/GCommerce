@@ -116,6 +116,18 @@
                 android:textStyle="italic" />
 
             <TextView
+                android:id="@+id/shopLocationTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:drawableStart="@drawable/ic_baseline_location_on_24"
+                android:drawablePadding="10dp"
+                android:text="Shop location"
+                android:textColor="#FF5722"
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
+            <TextView
                 android:id="@+id/categoryTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

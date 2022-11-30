@@ -27,6 +27,13 @@
         android:theme="@style/Theme.e_commerce"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.MapsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Activity.CartActivity"
             android:exported="false" />
         <activity
@@ -47,7 +54,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBlJTqfsYvGaTh5-_DdyRKgNyQvIBxkKUM" />
+            android:value="AIzaSyCJytAzL0koK3qbgPTOhrwNzRKvzQIEPqc" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
