@@ -2,6 +2,7 @@ package com.example.e_commerce.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ public class ShowDetailActivity extends AppCompatActivity {
     private Food object;
     int numberOrder = 1;
     LocalCache localCache;
+    private boolean visible = false;
 //    private ManagementCart managementCart;
 
     @Override
@@ -92,7 +94,6 @@ public class ShowDetailActivity extends AppCompatActivity {
         });
 
 
-
         addToCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,14 +112,17 @@ public class ShowDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (descriptionTxt.getVisibility() == View.GONE) {
                     descriptionTxt.setVisibility(View.VISIBLE);
-                    descriptionBtn.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.detail_description), null, null, null);
+                    descriptionBtn.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_baseline_expand_less_24), null, null, null);
+                    //descriptionBtn.setCompoundDrawablePadding(10);
+
                 } else {
                     descriptionTxt.setVisibility(View.GONE);
                     descriptionBtn.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_baseline_expand_more_24), null, null, null);
-                    descriptionBtn.setCompoundDrawablePadding(0);
+                    //descriptionBtn.setCompoundDrawablePadding(10);
                 }
             }
         });
+
     }
 
     private void showAddressStore() {
