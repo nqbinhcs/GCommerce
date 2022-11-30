@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class ShowDetailActivity extends AppCompatActivity {
     private TextView addToCartBtn;
-    private TextView titleTxt, feeTxt, sellerTxt, shopLocationTxT, categoryTxT, descriptionTxt, numberOrderTxt;
+    private TextView titleTxt, feeTxt, sellerTxt, shopLocationTxT, categoryTxT, descriptionTxt, numberOrderTxt, descriptionBtn;
     private ImageView plusBtn, minusBtn, picFood, backButton;
     private Food object;
     int numberOrder = 1;
@@ -105,6 +105,20 @@ public class ShowDetailActivity extends AppCompatActivity {
                 Toast.makeText(ShowDetailActivity.this, "Add " + Integer.toString(numberOrder) + " " + object.getTitle() + " successfully!", Toast.LENGTH_SHORT).show();
             }
         });
+
+        descriptionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (descriptionTxt.getVisibility() == View.GONE) {
+                    descriptionTxt.setVisibility(View.VISIBLE);
+                    descriptionBtn.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.detail_description), null, null, null);
+                } else {
+                    descriptionTxt.setVisibility(View.GONE);
+                    descriptionBtn.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_baseline_expand_more_24), null, null, null);
+                    descriptionBtn.setCompoundDrawablePadding(0);
+                }
+            }
+        });
     }
 
     private void showAddressStore() {
@@ -125,6 +139,7 @@ public class ShowDetailActivity extends AppCompatActivity {
         shopLocationTxT = findViewById(R.id.shopLocationTxt);
         categoryTxT = findViewById(R.id.categoryTxt);
         descriptionTxt = findViewById(R.id.descriptionTxt);
+        descriptionBtn = findViewById(R.id.descriptionBtn);
         numberOrderTxt = findViewById(R.id.numberOrderTxt);
         plusBtn = findViewById(R.id.plusBtn);
         minusBtn = findViewById(R.id.minusBtn);

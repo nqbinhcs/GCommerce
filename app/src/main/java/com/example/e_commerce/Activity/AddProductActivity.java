@@ -94,7 +94,7 @@ public class AddProductActivity extends AppCompatActivity {
         progressDialog.show();
 
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CANADA);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CHINA);
         Date now = new Date();
         String fileName = formatter.format(now) + "_" + user.getEmail();
         storageReference = FirebaseStorage.getInstance().getReference("images/"+fileName);

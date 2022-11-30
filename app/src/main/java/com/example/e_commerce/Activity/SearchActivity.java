@@ -1,5 +1,6 @@
 package com.example.e_commerce.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -51,7 +52,8 @@ public class SearchActivity extends AppCompatActivity  {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+//                finish();
+                startActivity(new Intent(SearchActivity.this, HomeActivity.class));
             }
         });
     }

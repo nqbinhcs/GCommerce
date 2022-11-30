@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +21,10 @@ import com.google.gson.Gson;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class CartActivity extends AppCompatActivity {
 
@@ -28,15 +32,38 @@ public class CartActivity extends AppCompatActivity {
     public FoodCartAdapter adapter;
     private ScrollView scrollView;
     private TextView noFoundItem;
-    private TextView subTotalView, disCountView, deliveryView, totalView;
-    ArrayList<Food> foodList;
-    LocalCache localCache;
+    private TextView subTotalView, disCountView, deliveryView, totalView, buyAllBtn;
+    private ArrayList<Food> foodList;
+    private LocalCache localCache;
+
+    private double subTotal = 0;
+    private double disCount = 0;
+    private double deliveryCharge = 15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         initView();
+        addOnClickEvent();
+    }
+
+    private void addOnClickEvent() {
+        buyAllBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CHINA);
+                Date now = new Date();
+                String fileName = formatter.format(now);
+
+                localCache.deleteFoodList();
+                Intent intent = new Intent(CartActivity.this, DetailOrderActivity.class);
+                intent.putExtra("subTotal", Double.toString(subTotal));
+                intent.putExtra("disCount", Double.toString(disCount));
+                intent.putExtra("deliveryCharge", Double.toString(deliveryCharge));
+                startActivity(intent);
+            }
+        });
     }
 
     private void initView() {
@@ -45,6 +72,7 @@ public class CartActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         scrollView = (ScrollView) findViewById(R.id.scrollView6);
         noFoundItem = (TextView) findViewById(R.id.noitemfound);
+        buyAllBtn = (TextView) findViewById(R.id.buyAllBtn);
         localCache = new LocalCache(this, "Local cache");
         foodList = localCache.loadFoodList();
 
@@ -52,11 +80,6 @@ public class CartActivity extends AppCompatActivity {
         disCountView = (TextView) findViewById(R.id.discount);
         deliveryView = (TextView) findViewById(R.id.deliverycharge);
         totalView = (TextView) findViewById(R.id.total);
-
-
-        double subTotal = 0;
-        double disCount = 0;
-        double deliveryCharge = 15;
 
         if (foodList.size() > 0) {
             for (Food food : foodList) {

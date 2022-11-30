@@ -140,16 +140,29 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/descriptionTxt"
+                android:id="@+id/descriptionBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:drawableStart="@drawable/detail_description"
-                android:drawablePadding="10dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:drawableStart="@drawable/ic_baseline_expand_more_24"
                 android:text="Description"
                 android:textColor="#686767"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/descriptionTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="26dp"
+                android:layout_marginRight="16dp"
+                android:drawablePadding="10dp"
+                android:text="Description"
+                android:textColor="#686767"
+                android:textSize="18sp"
+                android:visibility="gone"/>
         </LinearLayout>
     </ScrollView>
 
