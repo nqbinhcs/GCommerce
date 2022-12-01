@@ -89,4 +89,10 @@ public class Food implements Serializable {
                 ", numberInCart=" + numberInCart +
                 '}';
     }
+
+    public boolean equalTo(Food other) {
+        return  this.imgUrl.equals(other.imgUrl) &&
+                this.seller.equals(other.seller);
+
+    }
 }

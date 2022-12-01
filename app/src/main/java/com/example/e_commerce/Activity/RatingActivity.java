@@ -41,6 +41,8 @@ public class RatingActivity extends AppCompatActivity {
                 EditText reviewView = (EditText) findViewById(R.id.review_rating);
                 String review = reviewView.getText().toString();
                 Log.d("Review", review);
+                Intent intent = new Intent(RatingActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
         skipButton.setOnClickListener(new View.OnClickListener() {

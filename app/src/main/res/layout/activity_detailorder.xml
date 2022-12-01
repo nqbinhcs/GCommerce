@@ -22,6 +22,7 @@
             android:layout_gravity="center"
             android:background="@drawable/baseline_arrow_back" />
         <TextView
+            android:id="@+id/orderId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Order #345"
@@ -63,6 +64,7 @@
                         android:layout_weight="1"
                         android:textStyle="bold"/>
                     <TextView
+                        android:id="@+id/time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#F37A20"
@@ -71,6 +73,7 @@
                         android:layout_marginEnd="10dp"/>
             </LinearLayout>
             <TextView
+                android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/baseline_event"
@@ -91,36 +94,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#DEE2E1"
+                    android:background="#5EC401"
                     android:layout_marginLeft="3dp"
                     android:layout_marginRight="3dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#DEE2E1"
+                    android:background="#5EC401"
                     android:layout_marginLeft="3dp"/>
             </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#777777"
-                android:text="Your order is received"
+                android:text="Your order is finished"
                 android:layout_marginTop="15dp"
                 android:textSize="16sp"/>
+<!--            <Button-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:backgroundTint="@null"-->
+<!--                android:background="@drawable/custom_button_showdelivery"-->
+<!--                android:textColor="#5EC401"-->
+<!--                android:text="Show Delivery Details"-->
+<!--                android:padding="8dp"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="16sp"-->
+<!--                android:layout_marginTop="15dp"/>-->
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:backgroundTint="@null"
-                android:background="@drawable/custom_button_showdelivery"
-                android:textColor="#5EC401"
-                android:text="Show Delivery Details"
-                android:padding="8dp"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginTop="15dp"/>
-            <Button
+                android:id="@+id/showfull"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:backgroundTint="@null"
@@ -185,6 +189,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
                 <TextView
+                    android:id="@+id/subtotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#37474F"
@@ -208,6 +213,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
                 <TextView
+                    android:id="@+id/deliverycharge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#37474F"
@@ -232,6 +238,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
                 <TextView
+                    android:id="@+id/discount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#37474F"
@@ -256,6 +263,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
                 <TextView
+                    android:id="@+id/total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#37474F"
@@ -277,7 +285,8 @@
         android:drawableEnd="@drawable/baseline_chat_bubble_outliner"
         android:textAllCaps="false"
         android:textStyle="bold"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginBottom="15dp"
+        android:visibility="visible"/>
 
     <Button
         android:layout_width="match_parent"
@@ -288,9 +297,11 @@
         android:text="Cancel Order"
         android:textAllCaps="false"
         android:textStyle="bold"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginBottom="15dp"
+        android:visibility="gone"/>
 
     <Button
+        android:id="@+id/confirmBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:backgroundTint="@null"
@@ -301,5 +312,5 @@
         android:textStyle="bold"
         android:layout_marginBottom="15dp"
         android:drawableRight="@drawable/baseline_done"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 </LinearLayout>

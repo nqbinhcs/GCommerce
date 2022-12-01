@@ -100,7 +100,16 @@ public class ShowDetailActivity extends AppCompatActivity {
                 ArrayList<Food> foodList = localCache.loadFoodList();
                 if (foodList == null)
                     foodList = new ArrayList<>();
-                foodList.add(object);
+                boolean added = false;
+                for (Food food : foodList) {
+                    if (food.equalTo(object)) {
+                        food.setNumberInCart(food.getNumberInCart() + object.getNumberInCart());
+                        added = true;
+                        break;
+                    }
+                }
+                if (!added)
+                    foodList.add(object);
                 localCache.deleteFoodList();
                 localCache.addFoodList(foodList);
                 Toast.makeText(ShowDetailActivity.this, "Add " + Integer.toString(numberOrder) + " " + object.getTitle() + " successfully!", Toast.LENGTH_SHORT).show();
