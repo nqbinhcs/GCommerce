@@ -13,7 +13,6 @@
         android:orientation="horizontal"
         android:padding="10dp"
         >
-
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -36,15 +35,37 @@
                 android:textStyle="bold"
                 android:id="@+id/name_carditem"
                 />
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Shop: Shopee"
-                android:textColor="#37474F"
-                android:textSize="16sp"
-                android:layout_marginTop="5dp"
-                android:id="@+id/shop_carditem"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shop: Shopee"
+                    android:textColor="#37474F"
+                    android:textSize="16sp"
+                    android:id="@+id/shop_carditem"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Number: 2"
+                    android:textSize="16dp"
+                    android:id="@+id/number_carditem" />
                 />
+
+            </LinearLayout>
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,19 +78,48 @@
                     android:textStyle="bold"
                     android:text="20.000 VNĐ"
                     android:id="@+id/cost_carditem"/>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
-                <TextView
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Number: 2"
-                    android:textSize="16dp"
-                    android:id="@+id/number_carditem"/>
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/small_add"
+                        android:id="@+id/order_add"
+                        />
+                    <TextView
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/small_minus"
+                        android:id="@+id/oder_minus"
+                        />
+                </LinearLayout>
             </LinearLayout>
+
         </LinearLayout>
+
     </LinearLayout>
+    <ImageView
+        android:id="@+id/cancel_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_cancel_24"
+        android:layout_gravity="end"
+        />
 
     <TextView
         android:layout_marginTop="140dp"

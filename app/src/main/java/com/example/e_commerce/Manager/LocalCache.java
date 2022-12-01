@@ -59,6 +59,7 @@ public class LocalCache {
         preferencesEditor.apply();
     }
 
+
     public void addFoodList(ArrayList<Food> foodList) {
         SharedPreferences.Editor preferencesEditor = preferences.edit();
         Gson gson = new Gson();

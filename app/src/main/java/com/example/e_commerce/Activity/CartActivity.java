@@ -56,6 +56,7 @@ public class CartActivity extends AppCompatActivity {
                 Date now = new Date();
                 String fileName = formatter.format(now);
 
+
                 localCache.deleteFoodList();
                 Intent intent = new Intent(CartActivity.this, DetailOrderActivity.class);
                 intent.putExtra("subTotal", Double.toString(subTotal));
