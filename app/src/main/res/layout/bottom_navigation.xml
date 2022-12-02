@@ -57,9 +57,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:scaleX="0.3"
-                        android:scaleY="0.3"
-                        app:srcCompat="@drawable/btn_cat" />
+                        android:scaleX="0.45"
+                        android:scaleY="0.45"
+                        app:srcCompat="@drawable/ic_baseline_add_business_24" />
                 </LinearLayout>
 
                 <LinearLayout
