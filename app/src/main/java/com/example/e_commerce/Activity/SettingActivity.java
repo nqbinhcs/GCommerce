@@ -43,6 +43,12 @@ public class SettingActivity extends AppCompatActivity {
                 startActivity(new Intent(SettingActivity.this, EditProfileActivity.class));
             }
         });
+        myOrderView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SettingActivity.this, HistoryOrderActivity.class));
+            }
+        });
     }
 
     private void initView() {

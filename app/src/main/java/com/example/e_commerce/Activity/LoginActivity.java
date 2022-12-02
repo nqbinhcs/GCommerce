@@ -108,6 +108,9 @@ public class LoginActivity extends AppCompatActivity {
                                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                                     user.setEmail(email);
                                                     user.setName(document.getString("name"));
+                                                    user.setLat(Double.valueOf(document.getString("latitude")));
+                                                    user.setLng(Double.valueOf(document.getString("longitude")));
+                                                    user.setShop_name(document.getString("shop_name"));
                                                 }
                                                 LocalCache localCache = new LocalCache(LoginActivity.this, "Local cache");
                                                 localCache.addUser(user);

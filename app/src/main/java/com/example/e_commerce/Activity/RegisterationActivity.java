@@ -120,6 +120,9 @@ public class RegisterationActivity extends AppCompatActivity {
 
     }
 
+    public void BackEvent(View view) {
+        startActivity(new Intent(RegisterationActivity.this, LoginActivity.class));
+    }
 
     private void createUser() {
         String email = account.getText().toString();

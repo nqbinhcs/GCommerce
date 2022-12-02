@@ -1,5 +1,10 @@
 package com.example.e_commerce.Activity;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,13 +14,13 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.e_commerce.Adapter.FoodAdapter;
+import com.example.e_commerce.Adapter.FullPackageAdapter;
+import com.example.e_commerce.Adapter.HistoryOrderAdapter;
+import com.example.e_commerce.Manager.LocalCache;
 import com.example.e_commerce.Model.Food;
+import com.example.e_commerce.Model.Order;
+import com.example.e_commerce.Model.User;
 import com.example.e_commerce.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,27 +29,30 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
+import java.util.Locale;
 
-public class SearchActivity extends AppCompatActivity  {
-
+public class HistoryOrderActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
-    public FoodAdapter adapter;
+    public HistoryOrderAdapter adapter;
     private ImageView backButton;
-    private String searchText;
 
-    public ArrayList<Food> foodList;
+    User user;
+    public ArrayList<Order> orderList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-        getBundle();
-        recyclerViewFoodCat();
-        bottomNavigation();
+        setContentView(R.layout.activity_history_order);
+
+        getUser();
         addEventBackButton();
+        recyclerViewFoodCat();
+    }
+
+    private void getUser() {
+        LocalCache localCache = new LocalCache(HistoryOrderActivity.this, "Local cache");
+        user = localCache.loadUser();
     }
 
     private void addEventBackButton() {
@@ -52,56 +60,37 @@ public class SearchActivity extends AppCompatActivity  {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                finish();
-                startActivity(new Intent(SearchActivity.this, HomeActivity.class));
+                finish();
             }
         });
-    }
-
-    private void getBundle() {
-        searchText = (String) getIntent().getStringExtra("Search text");
-        TextView searchName = (TextView) findViewById(R.id.catNameTxT);
-        searchName.setText("Search: " + searchText);
-        searchText = searchText.toLowerCase();
-    }
-
-    private void bottomNavigation() {
-        FloatingActionButton floatingActionButton = findViewById(R.id.cameraFloatBtn);
-        LinearLayout homeBtn = findViewById(R.id.homeBtn);
-        LinearLayout categoryBtn = findViewById(R.id.categoryBtn);
-        LinearLayout bagBtn = findViewById(R.id.cartBtn);
-        LinearLayout profileBtn = findViewById(R.id.profileBtn);
     }
 
 
     private void recyclerViewFoodCat() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerView = findViewById(R.id.recyclerViewFoodCat);
+        recyclerView = findViewById(R.id.recyclerViewHistoryOrder);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        foodList = new ArrayList<Food>();
+        orderList = new ArrayList<Order>();
         // -------------------------Query from database-----------------------
         FirebaseFirestore.getInstance()
-                .collection("Product")
+                .collection("Order")
+                .whereEqualTo("user", user.getEmail())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                if (document.getString("name") != null && document.getString("name").toLowerCase().contains(searchText)) {
-                                    foodList.add(new Food(document.getString("email"),
-                                            document.getString("imgUrl"),
-                                            document.getString("name"),
-                                            document.getString("seller"),
-                                            document.getString("category"),
-                                            document.getString("description"),
-                                            Double.valueOf(document.getString("cost")), 0));
-                                }
+                                orderList.add(new Order(document.getString("id"),
+                                        document.getString("date"),
+                                        document.getString("time"),
+                                        Double.valueOf(document.getString("subTotal")),
+                                        Double.valueOf(document.getString("deliveryCharge")),
+                                        Double.valueOf(document.getString("disCount"))));
                             }
-                            Log.d("SearchActivity111", Integer.toString(foodList.size()));
-                            if (foodList.size() > 0) {
-                                adapter = new FoodAdapter(foodList);
+                            if (orderList.size() > 0) {
+                                adapter = new HistoryOrderAdapter(HistoryOrderActivity.this, orderList);
                                 recyclerView.setAdapter(adapter);
                             } else {
                                 TextView noMatchView = (TextView) findViewById(R.id.noMatch);
@@ -116,6 +105,4 @@ public class SearchActivity extends AppCompatActivity  {
                 });
 
     }
-
-
 }

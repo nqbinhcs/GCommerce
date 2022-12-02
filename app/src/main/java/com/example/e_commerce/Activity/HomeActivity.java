@@ -182,7 +182,8 @@ public class HomeActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                foodList.add(new Food(document.getString("imgUrl"),
+                                foodList.add(new Food(document.getString("email"),
+                                        document.getString("imgUrl"),
                                         document.getString("name"),
                                         document.getString("seller"),
                                         document.getString("category"),

@@ -13,8 +13,22 @@ public class Food implements Serializable {
     private int numberInCart;
     private String seller;
     private String title;
+    private String email;
 
-    public Food(String imgUrl, String title, String seller, String category, String description, double cost, int numberInCart) {
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public Food(String email, String imgUrl, String title, String seller, String category, String description, double cost, int numberInCart) {
+        this.email = email;
         this.imgUrl = imgUrl;
         this.title = title;
         this.seller = seller;

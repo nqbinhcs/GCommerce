@@ -12,21 +12,18 @@
     android:scaleX="1.018"
     android:padding="15dp">
 
-
-
     <ImageView
         android:onClick="RegiterationBack"
         android:id="@+id/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/backward" />
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/backward"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:src="@drawable/small_splash"
-
         />
 
     <TextView
@@ -120,6 +117,7 @@
 
     <TextView
         android:id="@+id/SignIn"
+        android:onClick="BackEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"

@@ -65,6 +65,14 @@ public class User implements Serializable, Parcelable {
         this.shop_name = shop_name;
     }
 
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
 
 
 

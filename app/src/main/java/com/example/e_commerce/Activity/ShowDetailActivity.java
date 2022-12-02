@@ -1,22 +1,37 @@
 package com.example.e_commerce.Activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.e_commerce.Manager.LocalCache;
 import com.example.e_commerce.Model.Food;
 import com.example.e_commerce.Model.User;
 import com.example.e_commerce.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,19 +44,49 @@ public class ShowDetailActivity extends AppCompatActivity {
     int numberOrder = 1;
     LocalCache localCache;
     private boolean visible = false;
+    FusedLocationProviderClient fusedLocationProviderClient;
 
-    public ArrayList<User> userShops;
-//    private ManagementCart managementCart;
+    User userShop = null;
+    boolean locationPermissionGranted;
+
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+
+    LatLng currentLocation, shopLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_detail);
 
+        object = (Food) getIntent().getSerializableExtra("object");
+
+        // get user shop from database
+        FirebaseFirestore.getInstance()
+                .collection("User")
+                .whereEqualTo("email", object.getEmail())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("HelloShowdetail", document.getString("longitude"));
+                                userShop = new User(document.getString("email"),
+                                        document.getString("name"),
+                                        Double.parseDouble(document.getString("latitude")),
+                                        Double.parseDouble(document.getString("longitude")),
+                                        document.getString("address"),
+                                        document.getString("shop_name"));
+                            }
+                        }
+                    }
+                });
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
 //        managementCart = new ManagementCart(this);
         addEventBackButton();
         initView();
-        setUserShopDatabase();
         getBundle();
     }
 
@@ -55,32 +100,49 @@ public class ShowDetailActivity extends AppCompatActivity {
         });
     }
 
-    public void setUserShopDatabase(){
-        userShops = new ArrayList<User>();
-        // -------------------------Query from database----------------------- ==> error :<
-
-        userShops.add(new User("hvson@gmail.com", "Son Ho", 10.7379092, 106.677294, "39 D. Cao Lo Street, Ward 4, District 8, Ho Chi Minh City, Vietnam", "SH Store"));
-        userShops.add(new User("vghuy@gmail.com", "Huy Vuong", 10.7715101, 106.6677586, "704 Su Van Hanh, Ward 12, District 10, Ho Chi Minh City, Vietnam", "HV Store"));
-        userShops.add(new User("nqbinh@gmail.com", "Binh Nguyen", 10.7598163, 106.6592192, "497 Hoa Hao, Ward 7, District 10, Ho Chi Minh City", "BN Store"));
-
+    private User getUserShop() {
+        if (userShop != null)
+            return userShop;
+        return new User();
     }
 
-    public User getUserShop(String userName){
+//    private void getLocationPermission() {
+//        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+//                android.Manifest.permission.ACCESS_FINE_LOCATION)
+//                == PackageManager.PERMISSION_GRANTED) {
+//            locationPermissionGranted = true;
+//        } else {
+//            ActivityCompat.requestPermissions(this,
+//                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+//                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+//        }
+//    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode,
+//                                           @NonNull String[] permissions,
+//                                           @NonNull int[] grantResults) {
+//        locationPermissionGranted = false;
+//        if (requestCode == PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION) {
+//            if (grantResults.length > 0
+//                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                locationPermissionGranted = true;
+//            }
+//        } else {
+//            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        }
+//    }
 
-        // -------------------------Query from database----------------------- ==> error :<
-
-        User res = userShops.get(0);
-        for(int i = 1; i < userShops.size(); i++){
-            if(userShops.get(i).getName().equals(userName)){
-                res = userShops.get(i);
-            }
+    public void goToDirect() {
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("http://maps.google.com/maps?saddr=" + Double.valueOf(currentLocation.latitude) + "," + Double.valueOf(currentLocation.longitude) + "&daddr=" + String.valueOf(shopLocation.latitude) + "," + String.valueOf(shopLocation.longitude)));
+        intent.setPackage("com.google.android.apps.maps");
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
         }
-
-        return res;
     }
 
     private void getBundle() {
-        object = (Food) getIntent().getSerializableExtra("object");
 
         Glide.with(this)
                 .load(object.getImageUrl())
@@ -164,17 +226,29 @@ public class ShowDetailActivity extends AppCompatActivity {
         directionBtn.setOnClickListener(new View.OnClickListener() {
 
             // Hard code current location
-            LatLng currentLocation = new LatLng(10.888249399024446,106.78917099714462);
 
-            LatLng shopLocation = getUserShop(object.getSeller()).getCoordinateAddress();
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                        Uri.parse("http://maps.google.com/maps?saddr=" + Double.valueOf(currentLocation.latitude) + "," + Double.valueOf(currentLocation.longitude) + "&daddr="+ String.valueOf(shopLocation.latitude) +","+ String.valueOf(shopLocation.longitude)));
-                intent.setPackage("com.google.android.apps.maps");
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent);
+                currentLocation = new LatLng(10.888249399024446, 106.78917099714462);
+                shopLocation = getUserShop().getCoordinateAddress();
+
+                if (ActivityCompat.checkSelfPermission(ShowDetailActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(ShowDetailActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+
+                        fusedLocationProviderClient.getLastLocation()
+                                .addOnSuccessListener(new OnSuccessListener<Location>() {
+                                    @Override
+                                    public void onSuccess(Location location) {
+                                        if (location != null)
+                                            currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+
+                                        goToDirect();
+                                    }
+                                });
+                } else {
+                    goToDirect();
                 }
             }
         });
@@ -186,7 +260,7 @@ public class ShowDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(ShowDetailActivity.this, MapsActivity.class);
 
 //      --------------------------Query user from database email of product-----------------------------
-        User user = getUserShop(object.getSeller());
+        User user = getUserShop();
         intent.putExtra("user_store", (Serializable) user);
         startActivity(intent);
     }

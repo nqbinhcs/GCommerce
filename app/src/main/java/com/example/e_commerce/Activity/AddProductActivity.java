@@ -84,10 +84,17 @@ public class AddProductActivity extends AppCompatActivity {
                 return;
         }
 
-//        if (user.getShop_name() == null || user.getShop_name().length() == 0) {
-//            Toast.makeText(AddProductActivity.this,"You should create your shop in your profile first!",Toast.LENGTH_LONG).show();
-//            return;
-//        }
+        if (user.getShop_name() == null || user.getShop_name().length() == 0) {
+            Toast.makeText(AddProductActivity.this,"You should create your shop in your profile first!",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        try {
+            Double.valueOf(binding.productCost.getText().toString());
+        } catch (NumberFormatException e) {
+            Toast.makeText(AddProductActivity.this,"Cost should be a number!",Toast.LENGTH_LONG).show();
+            return;
+        }
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Uploading File....");
@@ -119,7 +126,7 @@ public class AddProductActivity extends AppCompatActivity {
                         productFirestore.put("name", binding.productName.getText().toString());
                         productFirestore.put("description", binding.productDescription.getText().toString());
                         productFirestore.put("cost", binding.productCost.getText().toString());
-                        productFirestore.put("seller", user.getName());
+                        productFirestore.put("seller", user.getShop_name());
                         productFirestore.put("email", user.getEmail());
 
                         storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {

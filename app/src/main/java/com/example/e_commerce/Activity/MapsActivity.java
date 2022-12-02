@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.e_commerce.Model.Food;
@@ -152,5 +153,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapLongClick(LatLng latLng) {
         Toast.makeText(MapsActivity.this,"Add new view",Toast.LENGTH_LONG).show();
+    }
+
+    public void BackEvent(View view) {
+        finish();
     }
 }

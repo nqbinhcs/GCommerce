@@ -39,6 +39,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         holder.title.setText(Foods.get(position).getTitle());
         holder.description.setText(Foods.get(position).getDescription());
 
+        holder.shop.setText("Shop: " + Foods.get(position).getSeller());
+
         Glide.with(holder.itemView.getContext())
                 .load(Foods.get(position).getImageUrl())
                 .into(holder.pic);
@@ -91,6 +93,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         TextView addBtn;
         TextView description;
         TextView rating;
+        TextView shop;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -98,7 +101,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             pic = itemView.findViewById(R.id.foodImg);
             addBtn = itemView.findViewById(R.id.foodaddBtn);
             description = itemView.findViewById(R.id.fooddescriptionTxT);
-//            rating = itemView.findViewById(R.id.foodratingTxT);
+            shop = itemView.findViewById(R.id.shop);
         }
     }
 

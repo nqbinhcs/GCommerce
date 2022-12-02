@@ -18,6 +18,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class DetailOrderActivity extends AppCompatActivity {
     TextView orderIdView, dateView, timeView, subTotalView, deliView, discountView, totalView;
+    String inCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +28,6 @@ public class DetailOrderActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        ImageView backArrow = (ImageView) findViewById(R.id.back_arrow_detail_order);
-        backArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DetailOrderActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
         String orderId = getIntent().getStringExtra("OrderId");
         String date = getIntent().getStringExtra("date");
         String time = getIntent().getStringExtra("time");
@@ -43,6 +35,21 @@ public class DetailOrderActivity extends AppCompatActivity {
         String disCount = getIntent().getStringExtra("disCount");
         String deliveryCharge = getIntent().getStringExtra("deliveryCharge");
         String total = getIntent().getStringExtra("total");
+
+        inCart = getIntent().getStringExtra("type");
+
+        ImageView backArrow = (ImageView) findViewById(R.id.back_arrow_detail_order);
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (inCart.equals("cart")) {
+                    Intent intent = new Intent(DetailOrderActivity.this, MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    finish();
+                }
+            }
+        });
 
         orderIdView = (TextView) findViewById(R.id.orderId);
         dateView = (TextView) findViewById(R.id.date);
@@ -77,6 +84,13 @@ public class DetailOrderActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button contactBtn = (Button) findViewById(R.id.cottactbtn);
+
+        if (!inCart.equals("cart")) {
+            confirmBtn.setVisibility(View.GONE);
+            contactBtn.setVisibility(View.GONE);
+        }
 
     }
 

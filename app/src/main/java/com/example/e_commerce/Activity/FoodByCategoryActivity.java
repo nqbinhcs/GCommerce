@@ -95,7 +95,8 @@ public class FoodByCategoryActivity extends AppCompatActivity  {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("TAG2", document.getId() + " => " + document.getData());
 
-                                foodList.add(new Food(document.getString("imgUrl"),
+                                foodList.add(new Food(document.getString("email"),
+                                    document.getString("imgUrl"),
                                     document.getString("name"),
                                     document.getString("seller"),
                                     document.getString("category"),

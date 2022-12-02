@@ -110,6 +110,7 @@ public class CartActivity extends AppCompatActivity {
                                                         intent.putExtra("disCount", Double.toString(disCount));
                                                         intent.putExtra("deliveryCharge", Double.toString(deliveryCharge));
                                                         intent.putExtra("total", Double.toString(subTotal + deliveryCharge - disCount));
+                                                        intent.putExtra("type", "cart");
                                                         startActivity(intent);
                                                     } else {
                                                         Toast.makeText(CartActivity.this, "Error to buy", Toast.LENGTH_SHORT).show();
