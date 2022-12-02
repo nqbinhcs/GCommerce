@@ -108,6 +108,7 @@
                 android:textColor="#236CD9"/>
 
             <EditText
+                android:gravity="left|start"
                 android:id="@+id/review_rating"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
