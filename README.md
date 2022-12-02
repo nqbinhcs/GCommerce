@@ -3,7 +3,7 @@
 <img src="images/logo.png" align="left"
 width="100" hspace="10" vspace="10">
 
-It is an simple e-commerce app designed in for retail stores and their surrounding clients.  It will receive from a farther-off shop in the backend. Smaller company owners will benefit from this instead of large online retailers . Technologies used in this project are android with java, database in Firebase, Google Map API, and Tensorflow Lite which is own by google.
+It is an simple e-commerce app designed in for retail grocery stores and their surrounding clients.  It will receive from a farther-off shop in the backend. Smaller company owners will benefit from this instead of large online retailers . Technologies used in this project are android with java, database in Firebase, Google Map API, and Tensorflow Lite which is own by google.
 
 <p align="left">
 <a href="https://play.google.com/store/apps/details?id=fr.gaulupeau.apps.InThePoche">
