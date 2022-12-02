@@ -1,6 +1,7 @@
 package com.example.e_commerce.Activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.example.e_commerce.Manager.LocalCache;
 import com.example.e_commerce.Model.Food;
 import com.example.e_commerce.Model.User;
 import com.example.e_commerce.R;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,11 +24,13 @@ import java.util.ArrayList;
 public class ShowDetailActivity extends AppCompatActivity {
     private TextView addToCartBtn;
     private TextView titleTxt, feeTxt, sellerTxt, shopLocationTxT, categoryTxT, descriptionTxt, numberOrderTxt, descriptionBtn;
-    private ImageView plusBtn, minusBtn, picFood, backButton;
+    private ImageView plusBtn, minusBtn, picFood, backButton, directionBtn;
     private Food object;
     int numberOrder = 1;
     LocalCache localCache;
     private boolean visible = false;
+
+    public ArrayList<User> userShops;
 //    private ManagementCart managementCart;
 
     @Override
@@ -37,6 +41,7 @@ public class ShowDetailActivity extends AppCompatActivity {
 //        managementCart = new ManagementCart(this);
         addEventBackButton();
         initView();
+        setUserShopDatabase();
         getBundle();
     }
 
@@ -48,6 +53,30 @@ public class ShowDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void setUserShopDatabase(){
+        userShops = new ArrayList<User>();
+        // -------------------------Query from database----------------------- ==> error :<
+
+        userShops.add(new User("hvson@gmail.com", "Son Ho", 10.7379092, 106.677294, "39 D. Cao Lo Street, Ward 4, District 8, Ho Chi Minh City, Vietnam", "SH Store"));
+        userShops.add(new User("vghuy@gmail.com", "Huy Vuong", 10.7715101, 106.6677586, "704 Su Van Hanh, Ward 12, District 10, Ho Chi Minh City, Vietnam", "HV Store"));
+        userShops.add(new User("nqbinh@gmail.com", "Binh Nguyen", 10.7598163, 106.6592192, "497 Hoa Hao, Ward 7, District 10, Ho Chi Minh City", "BN Store"));
+
+    }
+
+    public User getUserShop(String userName){
+
+        // -------------------------Query from database----------------------- ==> error :<
+
+        User res = userShops.get(0);
+        for(int i = 1; i < userShops.size(); i++){
+            if(userShops.get(i).getName().equals(userName)){
+                res = userShops.get(i);
+            }
+        }
+
+        return res;
     }
 
     private void getBundle() {
@@ -132,13 +161,32 @@ public class ShowDetailActivity extends AppCompatActivity {
             }
         });
 
+        directionBtn.setOnClickListener(new View.OnClickListener() {
+
+            // Hard code current location
+            LatLng currentLocation = new LatLng(10.888249399024446,106.78917099714462);
+
+            LatLng shopLocation = getUserShop(object.getSeller()).getCoordinateAddress();
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?saddr=" + Double.valueOf(currentLocation.latitude) + "," + Double.valueOf(currentLocation.longitude) + "&daddr="+ String.valueOf(shopLocation.latitude) +","+ String.valueOf(shopLocation.longitude)));
+                intent.setPackage("com.google.android.apps.maps");
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+            }
+        });
+
+
     }
 
     private void showAddressStore() {
         Intent intent = new Intent(ShowDetailActivity.this, MapsActivity.class);
 
 //      --------------------------Query user from database email of product-----------------------------
-        User user = new User("nqbinh@gmail.com", "Binh Nguyen", 10.7510069, 106.6515731, "227 Nguyen Van Cu", "NQB Store");
+        User user = getUserShop(object.getSeller());
         intent.putExtra("user_store", (Serializable) user);
         startActivity(intent);
     }
@@ -157,5 +205,6 @@ public class ShowDetailActivity extends AppCompatActivity {
         plusBtn = findViewById(R.id.plusBtn);
         minusBtn = findViewById(R.id.minusBtn);
         picFood=findViewById(R.id.picfood);
+        directionBtn = findViewById(R.id.directionImg);
     }
 }
