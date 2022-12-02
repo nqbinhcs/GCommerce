@@ -276,6 +276,7 @@
     </ScrollView>
 
     <Button
+        android:id="@+id/cottactbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:backgroundTint="@null"
@@ -289,6 +290,7 @@
         android:visibility="visible"/>
 
     <Button
+        android:id="@+id/cancelbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:backgroundTint="@null"
