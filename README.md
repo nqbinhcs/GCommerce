@@ -21,8 +21,8 @@ It is an simple e-commerce app designed in for retail grocery stores and their s
 
 
 ## Author
-- **Ho Van Son - 20120021** | [@sonhv3112](https://github.com/sonhv3112)
 - **Vuong Gia Huy - 20120014** | [@cubist38](https://github.com/cubist38)
+- **Ho Van Son - 20120021** | [@sonhv3112](https://github.com/sonhv3112)
 - **Nguyen Quang Binh - 20120412** | [@nqbinhcs](https://github.com/nqbinhcs)
 
 ## Features
