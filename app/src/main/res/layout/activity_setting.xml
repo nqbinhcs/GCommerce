@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/LoginLayout"
+    android:id="@+id/SettingLayou1t"
     android:background="@drawable/background"
     tools:context=".Activity.SettingActivity"
     android:padding="10dp">
