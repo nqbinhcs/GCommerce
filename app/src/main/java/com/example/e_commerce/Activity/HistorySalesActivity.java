@@ -25,15 +25,19 @@ import com.example.e_commerce.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.firestore.DocumentReference;
+import com.google.common.reflect.TypeToken;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.gson.Gson;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
-public class HistoryOrderActivity extends AppCompatActivity {
+public class HistorySalesActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
     public HistoryOrderAdapter adapter;
     private ImageView backButton;
@@ -44,7 +48,7 @@ public class HistoryOrderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_order);
+        setContentView(R.layout.activity_history_sales);
 
         getUser();
         addEventBackButton();
@@ -52,7 +56,7 @@ public class HistoryOrderActivity extends AppCompatActivity {
     }
 
     private void getUser() {
-        LocalCache localCache = new LocalCache(HistoryOrderActivity.this, "Local cache");
+        LocalCache localCache = new LocalCache(HistorySalesActivity.this, "Local cache");
         user = localCache.loadUser();
     }
 
@@ -72,28 +76,46 @@ public class HistoryOrderActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewHistoryOrder);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        //salesList = new ArrayList<Order>();
         orderList = new ArrayList<Order>();
-//
+
+
         // -------------------------Query from database-----------------------
         FirebaseFirestore.getInstance()
                 .collection("Order")
-                .whereEqualTo("user", user.getEmail())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                orderList.add(new Order(document.getString("id"),
-                                        document.getString("date"),
-                                        document.getString("time"),
-                                        Double.valueOf(document.getString("subTotal")),
-                                        Double.valueOf(document.getString("deliveryCharge")),
-                                        Double.valueOf(document.getString("disCount"))));
+                                String foodString = document.getString("food");
+                                String[] foodList = foodString.split(",");
+                                for (String field : foodList) {
+                                    String[] parseField = field.split(":");
+                                    //Log.d("PARSE", parseField[0]);
+                                    if (parseField[0].equals("\\\"email\\\""))
+                                    {
+                                        String sellerName = "\\\"" + user.getEmail() + "\\\"";
+                                        if (parseField[1].equals(sellerName))
+
+                                            orderList.add(new Order(document.getString("id"),
+                                                    document.getString("date"),
+                                                    document.getString("time"),
+                                                    Double.valueOf(document.getString("subTotal")),
+                                                    Double.valueOf(document.getString("deliveryCharge")),
+                                                    Double.valueOf(document.getString("disCount"))));
+                                    }
+
+
+                                }
+
+
+
+
+
                             }
                             if (orderList.size() > 0) {
-                                adapter = new HistoryOrderAdapter(HistoryOrderActivity.this, orderList);
+                                adapter = new HistoryOrderAdapter(HistorySalesActivity.this, orderList);
                                 recyclerView.setAdapter(adapter);
                             } else {
                                 TextView noMatchView = (TextView) findViewById(R.id.noMatch);

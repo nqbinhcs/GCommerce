@@ -27,6 +27,13 @@
         android:theme="@style/Theme.e_commerce"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.HistorySalesActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Activity.HistoryOrderActivity"
             android:exported="false" />
         <activity
@@ -83,10 +90,9 @@
             android:exported="false" />
         <activity
             android:name=".Activity.RatingActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".Activity.LoginActivity"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".Activity.LoginActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".Activity.ForgetPasswordActivity"
             android:exported="false" />

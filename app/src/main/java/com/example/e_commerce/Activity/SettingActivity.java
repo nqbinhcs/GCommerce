@@ -12,7 +12,7 @@ import com.example.e_commerce.Model.User;
 import com.example.e_commerce.R;
 
 public class SettingActivity extends AppCompatActivity {
-    private TextView logOutBtn, nameView, emailView, editProfileView, myOrderView;
+    private TextView logOutBtn, nameView, emailView, editProfileView, myOrderView, myHistorySalesView;
     private LocalCache localCache;
     private User user;
 
@@ -49,6 +49,12 @@ public class SettingActivity extends AppCompatActivity {
                 startActivity(new Intent(SettingActivity.this, HistoryOrderActivity.class));
             }
         });
+        myHistorySalesView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SettingActivity.this, HistorySalesActivity.class));
+            }
+        });
     }
 
     private void initView() {
@@ -59,7 +65,7 @@ public class SettingActivity extends AppCompatActivity {
         emailView = (TextView) findViewById(R.id.setting_email);
         editProfileView = (TextView) findViewById(R.id.setting_edit_profile);
         myOrderView = (TextView) findViewById(R.id.setting_my_orders);
-
+        myHistorySalesView = (TextView) findViewById(R.id.setting_history_sales);
         nameView.setText(user.getName());
         emailView.setText(user.getEmail());
     }
