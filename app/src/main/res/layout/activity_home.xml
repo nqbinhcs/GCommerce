@@ -59,6 +59,27 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/profile" />
 
+
+                <ImageView
+                    android:id="@+id/cartImg"
+                    android:layout_width="28dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="96dp"
+                    android:layout_marginTop="28dp"
+                    app:layout_constraintStart_toEndOf="@+id/greetTxT"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
+
+                <ImageView
+                    android:id="@+id/chatImg"
+                    android:layout_width="28dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="28dp"
+                    app:layout_constraintStart_toEndOf="@+id/cartImg"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_chat" />
+
                 <EditText
                     android:id="@+id/searchEditText"
                     android:layout_width="0dp"

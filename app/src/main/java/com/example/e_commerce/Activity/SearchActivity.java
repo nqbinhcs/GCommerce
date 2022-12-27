@@ -69,7 +69,8 @@ public class SearchActivity extends AppCompatActivity  {
         FloatingActionButton floatingActionButton = findViewById(R.id.cameraFloatBtn);
         LinearLayout homeBtn = findViewById(R.id.homeBtn);
         LinearLayout categoryBtn = findViewById(R.id.categoryBtn);
-        LinearLayout bagBtn = findViewById(R.id.cartBtn);
+//        LinearLayout bagBtn = findViewById(R.id.cartBtn);
+        LinearLayout exploreBtn = findViewById(R.id.exploreBtn);
         LinearLayout profileBtn = findViewById(R.id.profileBtn);
     }
 

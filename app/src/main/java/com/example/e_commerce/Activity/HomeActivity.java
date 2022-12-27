@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -70,6 +71,8 @@ public class HomeActivity extends AppCompatActivity {
         recyclerViewPopular();
         addSearchEvent();
         addCameraEvent();
+        addCartEvent();
+        addChatEvent();
         bottomNavigation();
     }
 
@@ -93,6 +96,30 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void addCartEvent() {
+        ImageView cartButton = findViewById(R.id.cartImg);
+
+        cartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, CartActivity.class));
+            }
+        });
+    }
+
+    private void addChatEvent() {
+        ImageView chatButton = findViewById(R.id.chatImg);
+
+        chatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, CartActivity.class));
+            }
+        });
+    }
+
+
 
     private void addSearchEvent() {
         searchView.setOnTouchListener(new View.OnTouchListener() {
@@ -119,7 +146,7 @@ public class HomeActivity extends AppCompatActivity {
 //        LinearLayout homeButtonn = findViewById(R.id.homeBtn);
         LinearLayout profileButtonn = findViewById(R.id.profileBtn);
         LinearLayout categoryButton = findViewById(R.id.categoryBtn);
-        LinearLayout cartButtonn = findViewById(R.id.cartBtn);
+        LinearLayout exploreButtonn = findViewById(R.id.exploreBtn);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,10 +169,10 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        cartButtonn.setOnClickListener(new View.OnClickListener() {
+        exploreButtonn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, CartActivity.class));
+                startActivity(new Intent(HomeActivity.this, DishFeedActivity.class));
             }
         });
     }

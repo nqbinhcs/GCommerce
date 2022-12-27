@@ -80,7 +80,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/cartBtn"
+                    android:id="@+id/exploreBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -93,7 +93,7 @@
                         android:layout_weight="1"
                         android:scaleX="0.45"
                         android:scaleY="0.45"
-                        app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
+                        app:srcCompat="@drawable/ic_explore" />
 
                 </LinearLayout>
 
