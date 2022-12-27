@@ -27,6 +27,19 @@
         android:theme="@style/Theme.e_commerce"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.DishFeedActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
             android:name=".Activity.HistorySalesActivity"
             android:exported="false">
             <meta-data
