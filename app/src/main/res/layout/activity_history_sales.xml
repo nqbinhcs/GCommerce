@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="My history order"
+            android:text="My history sale"
             android:textColor="#37474F"
             android:textSize="25sp"
             android:textStyle="bold"/>
@@ -69,7 +69,7 @@
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewHistoryOrder"
+                    android:id="@+id/recyclerViewHistorySales"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="5.5"

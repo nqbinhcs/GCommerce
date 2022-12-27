@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.example.e_commerce.Adapter.FoodAdapter;
 import com.example.e_commerce.Adapter.FullPackageAdapter;
-import com.example.e_commerce.Adapter.HistoryOrderAdapter;
+import com.example.e_commerce.Adapter.HistorySaleAdapter;
 import com.example.e_commerce.Manager.LocalCache;
 import com.example.e_commerce.Model.Food;
 import com.example.e_commerce.Model.Order;
@@ -39,7 +39,7 @@ import java.util.Map;
 
 public class HistorySalesActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
-    public HistoryOrderAdapter adapter;
+    public HistorySaleAdapter adapter;
     private ImageView backButton;
 
     User user;
@@ -73,7 +73,7 @@ public class HistorySalesActivity extends AppCompatActivity {
 
     private void recyclerViewFoodCat() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerView = findViewById(R.id.recyclerViewHistoryOrder);
+        recyclerView = findViewById(R.id.recyclerViewHistorySales);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         orderList = new ArrayList<Order>();
@@ -105,17 +105,10 @@ public class HistorySalesActivity extends AppCompatActivity {
                                                     Double.valueOf(document.getString("deliveryCharge")),
                                                     Double.valueOf(document.getString("disCount"))));
                                     }
-
-
                                 }
-
-
-
-
-
                             }
                             if (orderList.size() > 0) {
-                                adapter = new HistoryOrderAdapter(HistorySalesActivity.this, orderList);
+                                adapter = new HistorySaleAdapter(HistorySalesActivity.this, orderList);
                                 recyclerView.setAdapter(adapter);
                             } else {
                                 TextView noMatchView = (TextView) findViewById(R.id.noMatch);
