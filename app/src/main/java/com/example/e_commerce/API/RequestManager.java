@@ -26,9 +26,15 @@ public class RequestManager {
         this.context = context;
     }
 
-    public void getRandomRecipes(RandomRecipeResponseListener listener) {
+    public void getRandomRecipes(RandomRecipeResponseListener listener, List<String> tags) {
         CallRandomRecipes callRandomRecipes = retrofit.create(CallRandomRecipes.class);
-        Call<RandomRecipeApiResponse> call = callRandomRecipes.callRandomRecipe(context.getString(R.string.spoonacular_api_key), "10");
+        if (tags.size() != 0)
+        {
+            tags.add("vegetarian");
+        }
+        Call<RandomRecipeApiResponse> call = callRandomRecipes.callRandomRecipe(context.getString(R.string.spoonacular_api_key), "10", tags);
+
+
         call.enqueue(new Callback<RandomRecipeApiResponse>() {
             @Override
             public void onResponse(Call<RandomRecipeApiResponse> call, Response<RandomRecipeApiResponse> response) {
@@ -70,7 +76,8 @@ public class RequestManager {
         @GET("recipes/random")
         Call<RandomRecipeApiResponse> callRandomRecipe(
                 @Query("apiKey") String apiKey,
-                @Query("number") String number
+                @Query("number") String number,
+                @Query("tags")List<String> tags
         );
     }
 //    private interface CallRecipeDetails{

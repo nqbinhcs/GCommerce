@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.media.tv.TvContract;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.e_commerce.API.RandomRecipeApiResponse;
@@ -23,6 +24,9 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 //import com.example.e_commerce.Adapter.ViewPager.ViewPagerAdapter;
 import com.example.e_commerce.R;
+
+import java.util.ArrayList;
+import java.util.List;
 //import com.prmproject.recipeapp.Views.Authenticate.LoginActivity;
 
 public class DishFeedActivity extends AppCompatActivity {
@@ -31,6 +35,8 @@ public class DishFeedActivity extends AppCompatActivity {
     RequestManager manager;
     RandomRecipeAdapter randomRecipeAdapter;
     RecyclerView recyclerView;
+    List<String> tags = new ArrayList<>();
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +47,25 @@ public class DishFeedActivity extends AppCompatActivity {
         dialog.setTitle("Loading...");
 
         manager = new RequestManager(this);
-        manager.getRandomRecipes(randomRecipeResponseListener);
+        manager.getRandomRecipes(randomRecipeResponseListener, tags);
         dialog.show();
+
+        searchView = findViewById(R.id.searchRecipe);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                tags.clear();
+                tags.add(query);
+                manager.getRandomRecipes(randomRecipeResponseListener, tags);
+                dialog.show();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
 
     }
 

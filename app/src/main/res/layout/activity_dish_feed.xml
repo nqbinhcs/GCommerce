@@ -52,8 +52,8 @@
             android:layout_margin="8dp"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize">
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/searhView_Home"
+            <SearchView
+                android:id="@+id/searchRecipe"
                 app:queryHint="Search you recipe..."
                 app:iconifiedByDefault="false"
                 app:searchIcon="@drawable/search"
@@ -82,6 +82,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="4dp"/>
+
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
