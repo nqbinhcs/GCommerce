@@ -1,6 +1,7 @@
 package com.example.e_commerce.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,15 +39,21 @@ public class RandomRecipeAdapter extends RecyclerView.Adapter<RandomRecipeViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RandomRecipeViewHolder holder, int position) {
+        Log.d("PRINT", list.get(position).getTitle());
+        Log.d("PRINT", list.get(position).getId());
+
         holder.textView_title.setText(list.get(position).getTitle());
         holder.textView_title.setSelected(true);
         holder.textView_like.setText(list.get(position).getServings());
+        holder.textView_time.setText(list.get(position).getReadyInMinutes());
         Picasso.get().load(list.get(position).getImage()).into(holder.imageView_food);
 
         holder.random_list_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                listener.onRecipeClicked(String.valueOf(list.get(holder.getAbsoluteAdapterPosition()).getId()));
+
+                listener.onRecipeClicked(list.get(holder.getAdapterPosition()).getId());
             }
         });
     }

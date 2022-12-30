@@ -3,23 +3,44 @@ package com.example.e_commerce.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.List;
+
 public class ExtendedIngredient implements Parcelable {
-    private int id;
-    private String image, name, unit;
-    private double amount;
-    private Metric metric;
+    public int id;
+    public String aisle;
+    public String image;
+    public String consistency;
+    public String name;
+    public String nameClean;
+    public String original;
+    public String originalString;
+    public String originalName;
+    public double amount;
+    public String unit;
+    public List<String> meta;
+    public List<String> metaInformation;
+    public Measures measures;
 
     public ExtendedIngredient() {
     }
 
-    public ExtendedIngredient(int id, String image, String name, String unit, double amount, Metric metric) {
+    public ExtendedIngredient(int id, String aisle, String image, String consistency, String name, String nameClean, String original, String originalString, String originalName, double amount, String unit, List<String> meta, List<String> metaInformation, Measures measures) {
         this.id = id;
+        this.aisle = aisle;
         this.image = image;
+        this.consistency = consistency;
         this.name = name;
-        this.unit = unit;
+        this.nameClean = nameClean;
+        this.original = original;
+        this.originalString = originalString;
+        this.originalName = originalName;
         this.amount = amount;
-        this.metric = metric;
+        this.unit = unit;
+        this.meta = meta;
+        this.metaInformation = metaInformation;
+        this.measures = measures;
     }
+
 
     protected ExtendedIngredient(Parcel in) {
         id = in.readInt();
@@ -45,48 +66,56 @@ public class ExtendedIngredient implements Parcelable {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getAisle() {
+        return aisle;
     }
 
     public String getImage() {
         return image;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public String getConsistency() {
+        return consistency;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getNameClean() {
+        return nameClean;
+    }
+
+    public String getOriginal() {
+        return original;
+    }
+
+    public String getOriginalString() {
+        return originalString;
+    }
+
+    public String getOriginalName() {
+        return originalName;
     }
 
     public double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
     public String getUnit() {
         return unit;
     }
 
-    public void setUnit(String unit) {
-        this.unit = unit;
+    public List<String> getMeta() {
+        return meta;
     }
 
-    public Metric getMetric() {
-        return metric;
+    public List<String> getMetaInformation() {
+        return metaInformation;
     }
 
-    public void setMetric(Metric metric) {
-        this.metric = metric;
+    public Measures getMeasures() {
+        return measures;
     }
 
     @Override

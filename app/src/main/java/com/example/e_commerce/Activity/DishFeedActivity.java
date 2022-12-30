@@ -91,8 +91,10 @@ public class DishFeedActivity extends AppCompatActivity {
     private final RecipeClickListener recipeClickListener = new RecipeClickListener() {
         @Override
         public void onRecipeClicked(String id) {
-//            startActivity(new Intent(mView.getContext(), DetailRecipeActivity.class)
-//                    .putExtra("id",id));
+//            Toast.makeText(DishFeedActivity.this, id, Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(DishFeedActivity.this, RecipeDetailsActivity.class)
+                    .putExtra("id",id));
+
         }
     };
 

@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">e_commerce</string>
     <string name="maps_api_key">AIzaSyBlJTqfsYvGaTh5-_DdyRKgNyQvIBxkKUM</string>
-    <string name="spoonacular_api_key">3da048b21b5e415bb90a48659a6d721a</string>
+    <string name="spoonacular_api_key">65d9bc3833ea476894be98365a855436</string>
 </resources>

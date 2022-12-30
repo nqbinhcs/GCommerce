@@ -4,22 +4,25 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Step implements Parcelable {
 
     public Step() {
     }
 
-    public Step(int number, String step, ArrayList<Ingredient> ingredients, Length length) {
+    public Step(int number, String step, ArrayList<Ingredient> ingredients, ArrayList<Equipment> equipment, Length length) {
         this.number = number;
         this.step = step;
         this.ingredients = ingredients;
+        this.equipment = equipment;
         this.length = length;
     }
 
     private int number;
     private String step;
     private ArrayList<Ingredient> ingredients;
+    private ArrayList<Equipment> equipment;
     private Length length;
 
     protected Step(Parcel in) {
@@ -80,5 +83,9 @@ public class Step implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(number);
         dest.writeString(step);
+    }
+
+    public ArrayList<Equipment> getEquipment() {
+        return equipment;
     }
 }

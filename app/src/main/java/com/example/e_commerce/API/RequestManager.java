@@ -2,7 +2,13 @@ package com.example.e_commerce.API;
 
 import android.content.Context;
 
+import com.example.e_commerce.Listener.InstructionsListener;
 import com.example.e_commerce.Listener.RandomRecipeResponseListener;
+import com.example.e_commerce.Listener.RecipeDetailsListener;
+import com.example.e_commerce.Listener.SimilarRecipeListener;
+import com.example.e_commerce.Model.InstructionsResponse;
+import com.example.e_commerce.Model.RecipeDetailsResponse;
+import com.example.e_commerce.Model.SimilarRecipeResponse;
 import com.example.e_commerce.R;
 
 import java.util.List;
@@ -13,6 +19,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public class RequestManager {
@@ -52,26 +59,67 @@ public class RequestManager {
         });
     }
 
-//    public void getRecipeDetails(RecipeDetailsListener listener, int id){
-//        CallRecipeDetails callRecipeDetails = retrofit.create((CallRecipeDetails.class));
-//        Call<RecipeDetailsResponse> call = callRecipeDetails.callRecipeDetails(id,context.getString(R.string.api_key));
-//        call.enqueue(new Callback<RecipeDetailsResponse>() {
-//            @Override
-//            public void onResponse(Call<RecipeDetailsResponse> call, Response<RecipeDetailsResponse> response) {
-//                if(!response.isSuccessful()){
-//                    listener.didError(response.message());
-//                    return;
-//                }
-//                listener.didFetch(response.body(), response.message());
-//            }
-//
-//            @Override
-//            public void onFailure(Call<RecipeDetailsResponse> call, Throwable t) {
-//                listener.didError(t.getMessage());
-//            }
-//        });
-//    }
-//
+    public void getRecipeDetails(RecipeDetailsListener listener, int id){
+        CallRecipeDetails callRecipeDetails = retrofit.create(CallRecipeDetails.class);
+        Call<RecipeDetailsResponse> call = callRecipeDetails.callRecipeDetails(id, context.getString(R.string.spoonacular_api_key));
+        call.enqueue(new Callback<RecipeDetailsResponse>() {
+            @Override
+            public void onResponse(Call<RecipeDetailsResponse> call, Response<RecipeDetailsResponse> response) {
+                if (!response.isSuccessful()){
+                    listener.didError(response.message());
+                    return;
+                }
+                listener.didFetch(response.body(), response.message());
+
+            }
+
+            @Override
+            public void onFailure(Call<RecipeDetailsResponse> call, Throwable t) {
+                listener.didError(t.getMessage());
+            }
+        });
+    }
+
+    public void getSimilarRecipe(SimilarRecipeListener listener, int id){
+        CallSimilarRecipes callSimilarRecipes = retrofit.create(CallSimilarRecipes.class);
+        Call<List<SimilarRecipeResponse>> call = callSimilarRecipes.callSimilarRecipe(id, context.getString(R.string.spoonacular_api_key));
+        call.enqueue(new Callback<List<SimilarRecipeResponse>>() {
+            @Override
+            public void onResponse(Call<List<SimilarRecipeResponse>> call, Response<List<SimilarRecipeResponse>> response) {
+                if (!response.isSuccessful()){
+                    listener.didError(response.message());
+                    return;
+                }
+                listener.didFetch(response.body(), response.message());
+            }
+
+            @Override
+            public void onFailure(Call<List<SimilarRecipeResponse>> call, Throwable t) {
+                listener.didError(t.getMessage());
+            }
+        });
+    }
+
+    public void getInstructions(InstructionsListener listener, int id){
+        CallInstructions callInstructions = retrofit.create(CallInstructions.class);
+        Call<List<InstructionsResponse>> call = callInstructions.callInstructions(id, context.getString(R.string.spoonacular_api_key));
+        call.enqueue(new Callback<List<InstructionsResponse>>() {
+            @Override
+            public void onResponse(Call<List<InstructionsResponse>> call, Response<List<InstructionsResponse>> response) {
+                if (!response.isSuccessful()){
+                    listener.didError(response.message());
+                    return;
+                }
+                listener.didFetch(response.body(), response.message());
+            }
+
+            @Override
+            public void onFailure(Call<List<InstructionsResponse>> call, Throwable t) {
+                listener.didError(t.getMessage());
+            }
+        });
+    }
+
     private interface CallRandomRecipes{
         @GET("recipes/random")
         Call<RandomRecipeApiResponse> callRandomRecipe(
@@ -80,13 +128,30 @@ public class RequestManager {
                 @Query("tags")List<String> tags
         );
     }
-//    private interface CallRecipeDetails{
-//        @GET("recipes/{id}/information")
-//        Call<RecipeDetailsResponse> callRecipeDetails(
-//                @Path("id") int id,
-//                @Query("apiKey") String apiKey
-//        );
-//    }
+    private interface CallRecipeDetails{
+        @GET("recipes/{id}/information")
+        Call<RecipeDetailsResponse> callRecipeDetails(
+                @Path("id") int id,
+                @Query("apiKey") String apiKey
+        );
+    }
+
+    private interface CallSimilarRecipes{
+
+        @GET("recipes/{id}/similar")
+        Call<List<SimilarRecipeResponse>> callSimilarRecipe(
+                @Path("id") int id,
+                @Query("apiKey") String apiKey
+        );
+    }
+    private interface CallInstructions{
+
+        @GET("recipes/{id}/analyzedInstructions")
+        Call<List<InstructionsResponse>> callInstructions(
+                @Path("id") int id,
+                @Query("apiKey") String apiKey
+        );
+    }
 //
 //    public void getInstructions(InstructionListener listener, int id){
 //        CallInstructions callInstructions = retrofit.create(CallInstructions.class);
