@@ -41,6 +41,8 @@ public class HistorySalesActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
     public HistorySaleAdapter adapter;
     private ImageView backButton;
+    private TextView totalIncomeTextView;
+    double totalIncome = 0;
 
     User user;
     public ArrayList<Order> orderList;
@@ -49,7 +51,6 @@ public class HistorySalesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_sales);
-
         getUser();
         addEventBackButton();
         recyclerViewFoodCat();
@@ -96,7 +97,7 @@ public class HistorySalesActivity extends AppCompatActivity {
                                     if (parseField[0].equals("\\\"email\\\""))
                                     {
                                         String sellerName = "\\\"" + user.getEmail() + "\\\"";
-                                        if (parseField[1].equals(sellerName))
+                                        if (parseField[1].equals(sellerName)) {
 
                                             orderList.add(new Order(document.getString("id"),
                                                     document.getString("date"),
@@ -104,10 +105,17 @@ public class HistorySalesActivity extends AppCompatActivity {
                                                     Double.valueOf(document.getString("subTotal")),
                                                     Double.valueOf(document.getString("deliveryCharge")),
                                                     Double.valueOf(document.getString("disCount"))));
+                                            totalIncome += Double.valueOf(document.getString("subTotal")) + Double.valueOf(document.getString("deliveryCharge"));
+
+                                        }
+
                                     }
                                 }
                             }
+
                             if (orderList.size() > 0) {
+                                totalIncomeTextView = (TextView) findViewById(R.id.totalSalesNumber);
+                                totalIncomeTextView.setText(Double.toString(totalIncome) + " $");
                                 adapter = new HistorySaleAdapter(HistorySalesActivity.this, orderList);
                                 recyclerView.setAdapter(adapter);
                             } else {

@@ -20,15 +20,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="15dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/back_arrow_show_detail"
@@ -45,7 +47,7 @@
             android:text="My history sale"
             android:textColor="#37474F"
             android:textSize="25sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
 
@@ -83,5 +85,38 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="right"
+        >
+
+        <TextView
+            android:id="@+id/totalSalesText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total sales:"
+            android:textColor="#37474F"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/totalSalesNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#37474F"
+            android:text="0 $"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            />
+    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
