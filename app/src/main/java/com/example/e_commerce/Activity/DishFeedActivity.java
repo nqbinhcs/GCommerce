@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.media.tv.TvContract;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -99,4 +100,7 @@ public class DishFeedActivity extends AppCompatActivity {
     };
 
 
+    public void BackEvent(View view) {
+        finish();
+    }
 }

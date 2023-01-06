@@ -23,16 +23,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
 
+                <ImageView
+                    android:onClick="BackEvent"
+                    android:id="@+id/back_arrow_dish_feed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/baseline_arrow_back"
+                    android:layout_gravity="center"
+                    />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="8dp"
                     android:gravity="center"
                     android:text="Feed"
                     android:textColor="@color/green"
                     android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginLeft="15dp"
+                    />
 
 <!--                <Spinner-->
 <!--                    android:id="@+id/spinner_tags"-->
