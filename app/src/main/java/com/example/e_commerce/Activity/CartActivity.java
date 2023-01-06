@@ -19,6 +19,7 @@ import com.example.e_commerce.Adapter.FoodAdapter;
 import com.example.e_commerce.Adapter.FoodCartAdapter;
 import com.example.e_commerce.Manager.LocalCache;
 import com.example.e_commerce.Model.Food;
+import com.example.e_commerce.Model.User;
 import com.example.e_commerce.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -46,6 +47,9 @@ public class CartActivity extends AppCompatActivity {
     public static TextView subTotalView, disCountView, deliveryView, totalView;
     private ArrayList<Food> foodList;
     private LocalCache localCache;
+    User user;
+
+    private String userEmail;
 
     public static double subTotal = 0;
     public static double disCount = 0;
@@ -60,6 +64,9 @@ public class CartActivity extends AppCompatActivity {
         initView();
         addOnClickEvent();
     }
+
+
+
 
     private void addOnClickEvent() {
         buyAllBtn.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +86,8 @@ public class CartActivity extends AppCompatActivity {
                 for (Food food : foodList)
                     stringList.add(gson.toJson(food));
                 Map<String, String> order = new HashMap<>();
-                order.put("user", localCache.loadUser().getEmail());
+                userEmail = user.getEmail();
+                order.put("user", userEmail);
                 order.put("food", gson.toJson(stringList));
 
                 CollectionReference collectionReference = FirebaseFirestore.getInstance().collection("Order");
@@ -103,6 +111,7 @@ public class CartActivity extends AppCompatActivity {
                                                     if (task.isSuccessful()) {
                                                         localCache.deleteFoodList();
                                                         Intent intent = new Intent(CartActivity.this, DetailOrderActivity.class);
+                                                        intent.putExtra("UserEmail", userEmail);
                                                         intent.putExtra("OrderId", Integer.toString(orderId));
                                                         intent.putExtra("date", monthString + " " + day + ", " + year);
                                                         intent.putExtra("time", hour + ":" + minute);
@@ -135,6 +144,7 @@ public class CartActivity extends AppCompatActivity {
         buyAllBtn = (TextView) findViewById(R.id.buyAllBtn);
         localCache = new LocalCache(this, "Local cache");
         foodList = localCache.loadFoodList();
+        user = localCache.loadUser();
 
         subTotalView = (TextView) findViewById(R.id.subtotal);
         disCountView = (TextView) findViewById(R.id.discount);

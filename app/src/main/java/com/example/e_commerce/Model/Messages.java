@@ -1,54 +1,86 @@
 package com.example.e_commerce.Model;
 
+public class Messages
+{
+    private String from, message, type, to, messageID, time, date, name;
 
-import java.util.Date;
-
-public class MessageUser {
-    private String mText;
-    private String mSender;
-    private Date mDate;
-    private String mDateString;
-
-    public MessageUser() {
+    public Messages()
+    {
 
     }
 
-    public MessageUser(String mText, String mSender) {
-        this.mText = mText;
-        this.mSender = mSender;
+    public Messages(String from, String message, String type, String to, String messageID, String time, String date, String name) {
+        this.from = from;
+        this.message = message;
+        this.type = type;
+        this.to = to;
+        this.messageID = messageID;
+        this.time = time;
+        this.date = date;
+        this.name = name;
     }
 
-    public MessageUser(String mText, String mSender, Date mDate) {
-        this.mText = mText;
-        this.mSender = mSender;
-        this.mDate = mDate;
+    public String getFrom() {
+        return from;
     }
 
-    public String getText() {
-        return mText;
+    public void setFrom(String from) {
+        this.from = from;
     }
 
-    public void setText(String mText) {
-        this.mText = mText;
+    public String getMessage() {
+        return message;
     }
 
-    public String getSender() {
-        return mSender;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public void setSender(String mSender) {
-        this.mSender = mSender;
+    public String getType() {
+        return type;
     }
 
-    public Date getDate() {
-        return mDate;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public void setDate(Date mDate) {
-        this.mDate = mDate;
+    public String getTo() {
+        return to;
     }
 
-    public void setDateString(String mDateString) {
-        this.mDateString = mDateString;
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public String getMessageID() {
+        return messageID;
+    }
+
+    public void setMessageID(String messageID) {
+        this.messageID = messageID;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

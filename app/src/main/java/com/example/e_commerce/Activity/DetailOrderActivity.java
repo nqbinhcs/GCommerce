@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import com.example.e_commerce.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,9 +26,11 @@ public class DetailOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailorder);
         initView();
+
     }
 
     private void initView() {
+        String userEmail = getIntent().getStringExtra("UserEmail");
         String orderId = getIntent().getStringExtra("OrderId");
         String date = getIntent().getStringExtra("date");
         String time = getIntent().getStringExtra("time");
@@ -86,10 +89,18 @@ public class DetailOrderActivity extends AppCompatActivity {
         });
 
         Button contactBtn = (Button) findViewById(R.id.cottactbtn);
+        contactBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailOrderActivity.this, ChatActivity.class);
+                intent.putExtra("UserEmail", userEmail);
+                startActivity(intent);
+            }
+        });
 
         if (!inCart.equals("cart")) {
             confirmBtn.setVisibility(View.GONE);
-            contactBtn.setVisibility(View.GONE);
+            //contactBtn.setVisibility(View.GONE);
         }
 
     }
