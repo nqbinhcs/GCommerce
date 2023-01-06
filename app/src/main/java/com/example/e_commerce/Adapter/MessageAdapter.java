@@ -1,5 +1,6 @@
 package com.example.e_commerce.Adapter;
 
+
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,11 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.e_commerce.Model.Messages;
-import com.example.e_commerce.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
