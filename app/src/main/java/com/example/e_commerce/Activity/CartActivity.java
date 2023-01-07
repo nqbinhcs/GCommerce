@@ -152,6 +152,7 @@ public class CartActivity extends AppCompatActivity {
         totalView = (TextView) findViewById(R.id.total);
 
         if (foodList != null && foodList.size() > 0) {
+            subTotal = 0;
             for (Food food : foodList) {
                 subTotal += food.getCost() * food.getNumberInCart();
             }
