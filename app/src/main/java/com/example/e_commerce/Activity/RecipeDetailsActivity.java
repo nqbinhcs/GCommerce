@@ -183,4 +183,8 @@ public class RecipeDetailsActivity extends AppCompatActivity {
             Toast.makeText(RecipeDetailsActivity.this, message, Toast.LENGTH_SHORT).show();
         }
     };
+
+    public void BackEvent(View view) {
+        finish();
+    }
 }

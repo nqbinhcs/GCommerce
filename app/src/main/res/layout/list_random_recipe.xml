@@ -28,6 +28,7 @@
             android:padding="8dp"
             android:scrollHorizontally="true"
             android:singleLine="true"
+            android:fontFamily="@font/damion"
             android:text="Dish Name"
             android:textColor="@color/green"
             android:textSize="22sp"

@@ -20,26 +20,42 @@
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize">
-                <TextView
-                    android:layout_alignParentStart="true"
-                    android:text="Details"
-                    android:textSize="24sp"
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
 
-                    android:gravity="center"
-                    android:singleLine="true"
-                    android:ellipsize="marquee"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:scrollHorizontally="true"
-                    android:textStyle="bold"
-                    android:textColor="@color/green"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"/>
+                    <ImageView
+                        android:onClick="BackEvent"
+                        android:id="@+id/back_arrow_dish_feed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/baseline_arrow_back"
+                        android:layout_gravity="center"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center"
+                        android:text="Details"
+                        android:textColor="@color/green"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="15dp"
+                        />
+
+                </LinearLayout>
+
             </androidx.appcompat.widget.Toolbar>
             <TextView
                 android:id="@+id/textView_meal_name"
                 android:layout_alignParentStart="true"
                 android:text="Recipe Name"
-                android:textSize="24sp"
+                android:fontFamily="@font/damion"
+                android:textSize="30sp"
 
                 android:gravity="center"
                 android:padding="8dp"
@@ -47,18 +63,18 @@
                 android:textColor="@color/md_green_600"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
             <TextView
                 android:id="@+id/textView_meal_source"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:text="Source Name"
-                android:textSize="12sp"
-
                 android:gravity="center"
                 android:padding="8dp"
-                android:textStyle="italic"
+                android:text="Source Name"
                 android:textColor="@color/md_orange_400"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textSize="12sp"
+                android:textStyle="italic" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -72,6 +88,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
+                android:background="@drawable/gradient_background"
                 >
             <ImageView
                 android:id="@+id/imageView_meal_image"
@@ -85,6 +102,7 @@
                 android:id="@+id/button_nutrition"
                 android:text="See Nutrition Chart"
                 android:textAllCaps="false"
+                android:textSize="15sp"
                 android:backgroundTint="@color/green"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

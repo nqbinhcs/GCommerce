@@ -13,7 +13,10 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_background"
+            >
+
             <TextView
                 android:id="@+id/textView_instruction_step_number"
                 android:text="1"
@@ -21,7 +24,7 @@
 
                 android:textSize="16sp"
                 android:textAlignment="center"
-                android:textColor="@color/green"
+                android:textColor="@color/white"
                 android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -32,7 +35,7 @@
 
                 android:textSize="16sp"
                 android:textAlignment="textStart"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:padding="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -42,7 +45,9 @@
             android:layout_alignParentEnd="true"
             android:layout_toRightOf="@+id/textView_instruction_step_number"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+
+            >
             <TextView
                 android:text="Equipments"
                 android:textColor="@color/green"

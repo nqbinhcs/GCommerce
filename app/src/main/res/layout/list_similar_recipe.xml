@@ -17,7 +17,7 @@
             android:text="Name"
             android:textColor="@color/green"
             android:textAlignment="center"
-
+            android:fontFamily="@font/damion"
             android:textSize="16sp"
             android:singleLine="true"
             android:ellipsize="marquee"
