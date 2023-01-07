@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -41,6 +42,9 @@ import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+
+
 
 
 public class ChatActivity extends AppCompatActivity {
@@ -134,15 +138,10 @@ public class ChatActivity extends AppCompatActivity {
 
         messageAdapter = new MessageAdapter(messagesList);
         userMessagesList = (RecyclerView) findViewById(R.id.private_messages_list_of_users);
-//        linearLayoutManager = new LinearLayoutManager(this);
-//        userMessagesList.setLayoutManager(linearLayoutManager);
-//        userMessagesList.setAdapter(messageAdapter);
+        linearLayoutManager = new LinearLayoutManager(this);
+        userMessagesList.setLayoutManager(linearLayoutManager);
+        userMessagesList.setAdapter(messageAdapter);
 
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        userMessagesList.setLayoutManager(llm);
-        userMessagesList.setHasFixedSize(true);
-        userMessagesList.setAdapter( messageAdapter );
 
 
         Calendar calendar = Calendar.getInstance();
@@ -153,6 +152,7 @@ public class ChatActivity extends AppCompatActivity {
         SimpleDateFormat currentTime = new SimpleDateFormat("hh:mm a");
         saveCurrentTime = currentTime.format(calendar.getTime());
     }
+
 
 
 
@@ -193,7 +193,7 @@ public class ChatActivity extends AppCompatActivity {
 //    }
 //
     @Override
-    protected void onStart()
+    public void onStart()
     {
         super.onStart();
 
@@ -203,6 +203,7 @@ public class ChatActivity extends AppCompatActivity {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s)
                     {
+
                         Messages messages = dataSnapshot.getValue(Messages.class);
 
                         messagesList.add(messages);
@@ -261,8 +262,8 @@ public class ChatActivity extends AppCompatActivity {
         }
         else
         {
-            String messageSenderRef = "Messages/" + messageSenderID + "/" + messageSenderID;
-            String messageReceiverRef = "Messages/" + messageReceiverID + "/" + messageReceiverID;
+            String messageSenderRef = "Messages/" + messageSenderID + "/" + messageReceiverID;
+            String messageReceiverRef = "Messages/" + messageReceiverID + "/" + messageSenderID;
 
 
 
@@ -276,8 +277,8 @@ public class ChatActivity extends AppCompatActivity {
             Map messageTextBody = new HashMap();
             messageTextBody.put("message", messageText);
             messageTextBody.put("type", "text");
-            messageTextBody.put("from", messageSenderEmail);
-            messageTextBody.put("to", messageReceiverEmail);
+            messageTextBody.put("from", messageSenderID);
+            messageTextBody.put("to", messageReceiverID);
             messageTextBody.put("messageID", messagePushID);
             messageTextBody.put("time", saveCurrentTime);
             messageTextBody.put("date", saveCurrentDate);
