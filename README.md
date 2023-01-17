@@ -1,4 +1,4 @@
-# E-Commerce [![](https://jitpack.io/v/com.sunzn/banner.svg)](https://jitpack.io/#com.sunzn/banner) [![](https://img.shields.io/badge/License-Apache%202.0-orange.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+# GCommerce [![](https://jitpack.io/v/com.sunzn/banner.svg)](https://jitpack.io/#com.sunzn/banner) [![](https://img.shields.io/badge/License-Apache%202.0-orange.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 <img src="images/logo.png" align="left"
 width="100" hspace="10" vspace="10">
