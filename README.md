@@ -35,6 +35,7 @@ The android app lets you:
 - Recommend products with high purchasing power
 - Support to view detailed product information
 - Product reviews
+- Chat with owner/customer
 - Get recipe for a dish
 - Cart management
 - View shop location
