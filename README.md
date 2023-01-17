@@ -35,9 +35,12 @@ The android app lets you:
 - Recommend products with high purchasing power
 - Support to view detailed product information
 - Product reviews
+- Get recipe for a dish
 - Cart management
 - View shop location
 - Select payment method
+
+
 ## Screenshots
 
 ### Login
@@ -59,10 +62,20 @@ width="200"
 width="200"
     hspace="10" vspace="10">](/readme/Wallabag%20Article%20View.png)
 
+### Recipe
+[<img src="images/Random-Recipe.png" align="left"
+width="200"
+    hspace="10" vspace="10">](/readme/Wallabag%20Reading%20List.png)
+[<img src="images/Detail-Recipe.png" align="center"
+width="200"
+    hspace="10" vspace="10">](/readme/Wallabag%20Article%20View.png)
+
+
+
 ### Vision Search
 [<img src="images/Camera-Search.png" align="left"
 width="200"
-    hspace="10" vspace="10">](/readme/Wallabag%20Reading%20List.png)
+    hspace="10" vspace="10" bg="black" >](/readme/Wallabag%20Reading%20List.png)
 [<img src="images/Search-2.png" align="center"
 width="200"
     hspace="10" vspace="10">](/readme/Wallabag%20Article%20View.png)

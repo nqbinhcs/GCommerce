@@ -52,7 +52,7 @@ public class ChatActivity extends AppCompatActivity {
     private ImageView backButton;
 
     private String messageReceiverEmail = "admin@gmai.com";
-    private String messageReceiverID = "WWsBjnQHJDWfwIHyNuYOid2NZp73";
+    private String messageReceiverID = "Nmr4dlivPsPUAGvNn9KvJtsKIgF3";
 
     private String messageSenderEmail, messageSenderID;
     public ArrayList<Messages> messagesList;
@@ -200,45 +200,45 @@ public class ChatActivity extends AppCompatActivity {
         RootRef.child("Messages").child(messageSenderID).child(messageReceiverID)
                 .addChildEventListener(new ChildEventListener() {
 
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s)
-                    {
+                                           @Override
+                                           public void onChildAdded(DataSnapshot dataSnapshot, String s)
+                                           {
 
-                        Messages messages = dataSnapshot.getValue(Messages.class);
+                                               Messages messages = dataSnapshot.getValue(Messages.class);
 
-                        messagesList.add(messages);
+                                               messagesList.add(messages);
 
-                        messageAdapter.notifyDataSetChanged();
+                                               messageAdapter.notifyDataSetChanged();
 
-                        userMessagesList.smoothScrollToPosition(userMessagesList.getAdapter().getItemCount());
+                                               userMessagesList.smoothScrollToPosition(userMessagesList.getAdapter().getItemCount());
 
 
-                    }
+                                           }
 
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                                           @Override
+                                           public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                    }
+                                           }
 
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+                                           @Override
+                                           public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                    }
+                                           }
 
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                                           @Override
+                                           public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                    }
+                                           }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                                           @Override
+                                           public void onCancelled(DatabaseError databaseError) {
 
-                    }
+                                           }
 
-                }
+                                       }
                 );
     }
-//
+    //
 //
 //
     private void addEventBackButton() {
@@ -250,7 +250,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
     }
-//
+    //
     private void SendMessage()
     {
         String messageText = MessageInputText.getText().toString();
