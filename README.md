@@ -62,6 +62,19 @@ width="200"
 width="200"
     hspace="10" vspace="10">](/readme/Wallabag%20Article%20View.png)
 
+### History
+[<img src="images/Cart-history.png" align="left"
+width="200"
+    hspace="10" vspace="10">](/readme/Wallabag%20Reading%20List.png)
+[<img src="images/Sell.png" align="center"
+width="200"
+    hspace="10" vspace="10">](/readme/Wallabag%20Article%20View.png)
+
+
+
+
+
+
 ### Recipe
 [<img src="images/Random-Recipe.png" align="left"
 width="200"
